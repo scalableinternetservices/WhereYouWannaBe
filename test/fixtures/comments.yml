@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  event_id: 1
+  user_id: 1
+  date: 2018-10-08 18:15:56
+
+two:
+  message: MyText
+  event_id: 1
+  user_id: 1
+  date: 2018-10-08 18:15:56
