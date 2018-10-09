@@ -8,13 +8,14 @@ An event listing website where we have the list of events. Users can view the ev
 # Team Members
 
 ## [Ashwini Patil](https://github.com/ap1195)
-![Ashwini](pics/ashwini.JPG = 300x300)
+<img src="pics/ashwini.JPG" width="300" height="300">
 
 ## [Chandana Upadhyaya](https://github.com/chandana22)
-![Chandana](pics/chandana.jpg)
+<img src="pics/chandana.jpg" width="300" height="300">
 
-## [Santha Meena](https://github.com/santhameena13)
-![Santha](pics/Santha.png =250x250)
+
+## [Santha Meena](https://github.com/rmallensb)
+<img src="pics/Santha.png" width="300" height="300">
 
 ## [Sai Nikhil Maram](https://github.com/nikhilmaram)
-![Nikhil](pics/SaiNikhilMaram.png)
+<img src="pics/SaiNikhilMaram.png" width="300" height="300">
