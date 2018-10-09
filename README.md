@@ -8,10 +8,10 @@ An event listing website where we have the list of events. Users can view the ev
 ![Ashwini](pics/)
 
 ## [Chandana Upadhyaya](https://github.com/chandana22)
-![Chandana](headshots/chandana.jpg)
+![Chandana](pics/chandana.jpg)
 
 ## [Santha Meena](https://github.com/rmallensb)
 ![Santha](pics/)
 
 ## [Sai Nikhil Maram](https://github.com/nikhilmaram)
-![Nikhil](headshots/SaiNikhilMaram.PNG)
+![Nikhil](pics/SaiNikhilMaram.PNG)
