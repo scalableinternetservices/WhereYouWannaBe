@@ -14,7 +14,7 @@ An event listing website where we have the list of events. Users can view the ev
 ![Chandana](pics/chandana.jpg)
 
 ## [Santha Meena](https://github.com/santhameena13)
-![Santha](pics/Santha.png)
+![Santha](pics/Santha.png =250x250)
 
 ## [Sai Nikhil Maram](https://github.com/nikhilmaram)
 ![Nikhil](pics/SaiNikhilMaram.png)
