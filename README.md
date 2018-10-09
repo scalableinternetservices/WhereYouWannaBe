@@ -10,13 +10,14 @@ Trello Board : https://trello.com/b/7dXVdEsO/ourboard
 # Team Members
 
 ## [Ashwini Patil](https://github.com/ap1195)
-![Ashwini](pics/)
+<img src="pics/ashwini.JPG" width="300" height="300">
 
 ## [Chandana Upadhyaya](https://github.com/chandana22)
-![Chandana](pics/chandana.jpg)
+<img src="pics/chandana.jpg" width="300" height="300">
+
 
 ## [Santha Meena](https://github.com/rmallensb)
-![Santha](pics/)
+<img src="pics/Santha.png" width="300" height="300">
 
 ## [Sai Nikhil Maram](https://github.com/nikhilmaram)
-![Nikhil](pics/SaiNikhilMaram.png)
+<img src="pics/SaiNikhilMaram.png" width="300" height="300">
