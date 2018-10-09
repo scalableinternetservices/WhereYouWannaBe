@@ -14,4 +14,4 @@ An event listing website where we have the list of events. Users can view the ev
 ![Santha](pics/)
 
 ## [Sai Nikhil Maram](https://github.com/nikhilmaram)
-![Nikhil](pics/SaiNikhilMaram.PNG)
+![Nikhil](pics/SaiNikhilMaram.png)
