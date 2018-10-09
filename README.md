@@ -8,7 +8,7 @@ An event listing website where we have the list of events. Users can view the ev
 # Team Members
 
 ## [Ashwini Patil](https://github.com/ap1195)
-![Ashwini](pics/ashwini.JPG)
+![Ashwini](pics/ashwini.JPG = 300*300)
 
 ## [Chandana Upadhyaya](https://github.com/chandana22)
 ![Chandana](pics/chandana.jpg)
