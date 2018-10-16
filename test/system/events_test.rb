@@ -14,7 +14,7 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "New Event"
 
-    fill_in "Creator", with: @event.creator_id
+    fill_in "Creator", with: @event.user_id
     fill_in "Date", with: @event.date
     fill_in "Description", with: @event.description
     fill_in "Location", with: @event.location_id
@@ -31,7 +31,7 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "Edit", match: :first
 
-    fill_in "Creator", with: @event.creator_id
+    fill_in "Creator", with: @event.user_id
     fill_in "Date", with: @event.date
     fill_in "Description", with: @event.description
     fill_in "Location", with: @event.location_id
