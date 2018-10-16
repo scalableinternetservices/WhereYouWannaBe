@@ -7,7 +7,7 @@ one:
   location_id: 1
   date: 2018-10-08 18:13:24
   price: 1.5
-  creator_id: 1
+  user_id: 1
 
 two:
   title: MyString
@@ -16,4 +16,4 @@ two:
   location_id: 1
   date: 2018-10-08 18:13:24
   price: 1.5
-  creator_id: 1
+  user_id: 1
