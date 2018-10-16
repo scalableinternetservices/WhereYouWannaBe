@@ -4,6 +4,8 @@ An event listing website where we have the list of events. Users can view the ev
 
 Trello Board : https://trello.com/b/7dXVdEsO/ourboard
 
+Testing
+
 # ER Diagram
 ![ER](pics/ER.png)
 
