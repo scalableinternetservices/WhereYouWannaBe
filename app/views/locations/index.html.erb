@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Address</th>
       <th>City</th>
       <th>Capacity</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
+        <td><%= location.name %></td>
         <td><%= location.address %></td>
         <td><%= location.city %></td>
         <td><%= location.capacity %></td>
