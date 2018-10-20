@@ -177,6 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel
   bootsnap
   bootstrap-sass (= 3.3.7)
   byebug (= 9.0.6)
