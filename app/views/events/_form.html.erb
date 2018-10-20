@@ -11,47 +11,64 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :title, class: "control-label"%>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :description, class: "control-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
   </div>
 
-  <!--<div class="field">-->
-  <!--  <%= form.label :tag_id %>-->
-  <!--  <%= form.number_field :tag_id %>-->
-  <!--</div>-->
-  
-  <div class="field">
-    <%= form.label :tag %><br>
-    <%= form.collection_select :tag_id, Tag.all, :id, :name %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :tag, class: "control-label" %>
+      <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] }, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :location %><br>
+   <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+    <%= form.label :location, class: "control-label" %>
     <%= form.collection_select :location_id, Location.all, :id, :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+   <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+    <%= form.label :date, class: "control-label" %>
+    <%= form.datetime_select :date, class: "form-control" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+   <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+    <%= form.label :price, class: "control-label" %>
+    <%= form.text_field :price, class: "form-control" %>
+  </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+   <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+    <%= form.label :user_id, class: "control-label" %>
+    <%= form.number_field :user_id, class: "form-control" %>
+  </div>
+  </div>
+
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.submit class: "btn btn-large btn-success" %>
+    </div>
+  </div>
+  
+  <div class="container col-md-4 col-md-offset-4">
+   <div class="btn btn-warning">
+      <%= link_to 'Cancel', events_path %>
+    </div>
   </div>
 <% end %>

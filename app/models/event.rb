@@ -4,4 +4,9 @@ class Event < ApplicationRecord
   has_many :attendees
   belongs_to :tag
   has_many :comments
+  
+  validates :title, presence:true
+  validates_length_of :description, maximum: 100, allow_blank: true
+  validates :date, inclusion: { in: (Date.today..Date.today+5.years) }
+  validates_numericality_of :price, greater_than: -1
 end

@@ -11,48 +11,58 @@
     </div>
   <% end %>
 
-  <div class="form-group clear">
-    <%= form.label :name, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
-    <%= form.text_field :name, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :name, class: "control-label"  %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group clear">
-    <%= form.label :address, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
-    <%= form.text_field :address, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :address, class: "control-label"  %>
+      <%= form.text_field :address, class: "form-control" %>
     </div>
   </div>
-  <div class="form-group clear">
-    <%= form.label :city, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
-    <%= form.text_field :city, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group clear">
-    <%= form.label :capacity, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
-    <%= form.number_field :capacity, class: "form-control" %>
+  
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :city, class: "control-label"  %>
+      <%= form.text_field :city, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group clear">
-    <%= form.label :email, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :capacity, class: "control-label"  %>
+      <%= form.number_field :capacity, class: "form-control" %>
+    </div>
+  </div>
+
+ <div class="container col-md-4 col-md-offset-4">
+  <div class="form-group">
+    <%= form.label :email, class: "control-label"  %>
     <%= form.text_field :email, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group clear">
-    <%= form.label :phone, class: "col-md-4 control-label"  %>
-    <div class="col-md-5">
-    <%= form.text_field :phone, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :phone, class: "control-label"  %>
+      <%= form.text_field :phone, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group">
-  <%= form.submit class: "btn btn-large btn-primary" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.submit class: "btn btn-large btn-success" %>
+    </div>
   </div>
+  
+  <div class="container col-md-4 col-md-offset-4">
+   <div class="btn btn-warning">
+      <%= link_to 'Cancel', locations_path %>
+    </div>
+  </div>
+  
 <% end %>

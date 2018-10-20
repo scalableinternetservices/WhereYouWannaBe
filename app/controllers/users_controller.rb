@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    @events = Event.where(['date > ?', DateTime.now])
   end
 
   # GET /users/1

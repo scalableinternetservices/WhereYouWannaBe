@@ -12,35 +12,51 @@
     </div>
   <% end %>
   
-  
-  <div class="form-group "col-md-2">
-    <%= form.label :name, class: "control-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :name, class: "control-label" %>
+      <%= form.text_field :name, class: "form-control"%>
+    </div>
   </div>
   
-  <div class="form-group">
-    <%= form.label :age, class: "control-label"  %>
-    <%= form.text_field :age, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :age, class: "control-label"  %>
+      <%= form.text_field :age, class: "form-control" %>
+    </div>
   </div>
   
-  <div class="form-group">
-    <%= form.label :home_address, class: "control-label"  %>
-    <%= form.text_field :home_address, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :home_address, class: "control-label"  %>
+      <%= form.text_field :home_address, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :email, class: "control-label"  %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
   </div>
 
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.label :password, class: "control-label"  %>
+      <%= form.password_field :password, class: "form-control", :value => @user.password %>
+    </div> 
+  </div>
   
-  <div class="form-group">
-    <%= form.label :email, class: "control-label"  %>
-    <%= form.text_field :email, class: "form-control" %>
+  <div class="container col-md-4 col-md-offset-4">
+    <div class="form-group">
+      <%= form.submit class: "btn btn-large btn-success" %>
+    </div>
+  </div>
+  
+  <div class="container col-md-4 col-md-offset-4">
+   <div class="btn btn-warning">
+      <%= link_to 'Cancel', users_path %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :password, class: "control-label"  %>
-    <%= form.password_field :password, class: "form-control", :value => @user.password %>
-  </div> 
-  
-  <div class="form-group">
-  <%= form.submit class: "btn btn-large btn-success" %>
-  </div>
-  
 <% end %>
