@@ -21,14 +21,19 @@
     <%= form.text_area :description %>
   </div>
 
+  <!--<div class="field">-->
+  <!--  <%= form.label :tag_id %>-->
+  <!--  <%= form.number_field :tag_id %>-->
+  <!--</div>-->
+  
   <div class="field">
-    <%= form.label :tag_id %>
-    <%= form.number_field :tag_id %>
+    <%= form.label :tag %><br>
+    <%= form.collection_select :tag_id, Tag.all, :id, :name %>
   </div>
 
   <div class="field">
-    <%= form.label :location_id %>
-    <%= form.number_field :location_id %>
+    <%= form.label :location %><br>
+    <%= form.collection_select :location_id, Location.all, :id, :name %>
   </div>
 
   <div class="field">
