@@ -1,25 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <br>
+  <font size = 4><strong>Hi <%= @user.name %>!</strong></font>
 </p>
-
+<hr>
 <p>
-  <strong>Age:</strong>
+  Here are the details of your WhereYouWannaBe account:
+</p>
+<p>
+  <font color=#2E2E2E><strong>Age:</strong></font>
   <%= @user.age %>
 </p>
 
 <p>
-  <strong>Home address:</strong>
+  <font color=#2E2E2E><strong>Home Address:</strong></font>
   <%= @user.home_address %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <font color=#2E2E2E><strong>Email Address:</strong></font>
   <%= @user.email %>
 </p>
 
+<p>
+  <font color=#2E2E2E><strong>Events you are attending:</strong></font>
+  <% @events.each do |event| %>
+      <%= event.title %>
+      <br>
+  <% end %>
+</p>
 <!--<p>-->
 <!--  <strong>Password:</strong>-->
 <!--  <%= @user.password %>-->
