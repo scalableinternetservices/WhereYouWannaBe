@@ -43,14 +43,15 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (9.1.4)
+    autoprefixer-rails (9.2.1)
       execjs
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.1.3)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.2)
@@ -69,7 +70,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -85,7 +86,7 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
@@ -99,6 +100,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    popper_js (1.14.3)
     puma (3.9.1)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -181,7 +183,7 @@ PLATFORMS
 DEPENDENCIES
   activemodel
   bootsnap
-  bootstrap-sass (= 3.3.7)
+  bootstrap
   byebug (= 9.0.6)
   coffee-rails (= 4.2.2)
   font-awesome-rails

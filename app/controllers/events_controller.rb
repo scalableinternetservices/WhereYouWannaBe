@@ -11,6 +11,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @comment = Comment.new
+    @tag = Tag.find_by_id(@event.tag_id)
+    @location = Location.find_by_id(@event.location_id)
+    @comments = @event.comments
   end
 
   # GET /events/new

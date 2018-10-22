@@ -1,13 +1,23 @@
-<header class="navbar-fixed-top navbar-default">
-      <div class="container">
-        <%= link_to image_tag("WYWB.png", alt: "WYWB logo", height: 80, width: 150),
-            root_path, id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   root_path %></li>
-            <li><%= link_to "Help",   help_path %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </nav>
-      </div>
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#"><%= link_to image_tag("WYWB.png", alt: "WYWB logo", height: 50, width: 150),
+                                                 root_path, id: "logo" %></a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%= link_to "Home",   root_path, class:'nav-link'%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Help",   help_path, class:'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log in", '#', class:'nav-link' %>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
 </header>

@@ -1,60 +1,79 @@
-<div class="alert alert-success" id="notice">
-  <strong>Success!</strong> <%= notice %>
+<p id="notice"><%= notice %></p>
+<div id="eventContainer" data-event-id ="<%=@event.id%>" class="col-md-6 offset-md-3 bg-light" style="margin-top: 100px;">
+  <h3 class="text-dark"><%= @event.title %></h3>
+  <div>
+    <p><%= @event.description %></p>
+  </div>
+  <div class="pull-right">
+    <%= @event.user_id %>
+  </div>
+  <div class="pull-right">
+    <h6><%= @event.date %></h6>
+  </div>
+  <div class="pull-right">
+    <span class="badge badge-pill badge-dark"><%= @tag.name %></span>
+  </div>
+  <div class="pull-right">
+    <h6><%= @location.name %></h6>
+  </div>
+  <div class ="pull-right">
+    <h6><%= @event.price %></h6>
+  </div>
+</div>
+<div class="col-md-6 offset-md-3">
+  <hr>
+</div>
+<div class="col-md-6 offset-md-3">
+  <div class="card">
+    <div class="card-header">
+      <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 40, width: 40, class:'rounded-circle'),
+                  root_path, id: "logo" %>
+    </div>
+    <div class="card-body">
+      <textarea class="form-control" rows="2" id="newComment"></textarea>
+      <a href="#" id="addComment" class="btn btn-primary float-right">Comment</a>
+    </div>
+  </div>
+</div>
+<div class="col-md-6 offset-md-3">
+  <% @comments.each do |comment| %>
+    <div class="card">
+      <div class="card-header">
+        <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 50, width: 50, class:'rounded-circle'),
+                    root_path, id: "logo" %>
+        <span> <%= comment.user_id %> </span>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= comment.message %></p>
+        <p class="font-weight-light"><%= comment.date %></p>
+
+      </div>
+    </div>
+  <% end %>
 </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @event.tag_id %>
-</p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location_id %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @event.price %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
-  <%= @event.user_id %>
-</p>
 
 
 <!--<%= link_to 'Edit', edit_event_path(@event) %> |-->
 <!--<%= link_to 'Back', events_path %>-->
 
-<%= render 'comments/form', comment: @comment %>
+<%#= render 'comments/form', comment: @comment %>
 
-<table>
-  <tbody>
-<% @event.comments.each do |comment| %>
-  <tr>
-    <td><%= comment.message %></td>
-    <td><%= comment.event_id %></td>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.date %></td>
-    <td><%= link_to 'Show', comment %></td>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-  </tbody>
-</table>
+<!--<table>-->
+<!--  <tbody>-->
+<%# @event.comments.each do |comment| %>
+<!--  <tr>-->
+<!--    <td><%#= comment.message %></td>-->
+<!--    <td><%#= comment.event_id %></td>-->
+<!--    <td><%#= comment.user_id %></td>-->
+<!--    <td><%#= comment.date %></td>-->
+<!--    <td><%#= link_to 'Show', comment %></td>-->
+<!--    <td><%#= link_to 'Edit', edit_comment_path(comment) %></td>-->
+<!--    <td><%#= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--  </tr>-->
+<%# end %>
+<!--  </tbody>-->
+<!--</table>-->
