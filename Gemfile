@@ -11,11 +11,8 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'bootsnap', require: false
 gem 'rake'
-<<<<<<< HEAD
-gem 'font-awesome-rails'
-=======
 gem 'bootstrap'
->>>>>>> f43cde8a3762fa49c72254563a41855031be965e
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
