@@ -1,14 +1,13 @@
 <%= form_with(model: location, local: true) do |form| %>
   <% if location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
-
-      <ul>
+   <div class="alert alert-danger">
+    <strong><%= pluralize(location.errors.count, "error") %> prohibited this action!</strong>
+    <ul style="list-style: none;">
       <% location.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="container col-md-4 col-md-offset-4">
