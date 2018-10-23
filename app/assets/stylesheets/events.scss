@@ -14,3 +14,12 @@ input {
   border: 1px solid black;
   border-radius: 4px;
 }
+
+// delete button on hover
+.closeBtn{
+  visibility: hidden;
+}
+
+.commentContainer:hover  .closeBtn{
+  visibility: visible;
+}

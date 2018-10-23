@@ -60,6 +60,8 @@ class CommentsController < ApplicationController
   def destroy
     @event = Event.find_by_id(@comment.event_id)
     @comment.destroy
+    p "##############"
+    p params
     respond_to do |format|
       format.html { redirect_to @event, notice: 'Comment was successfully destroyed.'}
       # format.json { head :no_content }
