@@ -7,7 +7,7 @@ class User < ApplicationRecord
 	has_many :events
 	has_many :comments
 	has_many :attendees
-	
+
 	validates:name, presence:true
 	validates_numericality_of :age, greater_than: -1
 	validates:email, presence:true, format: {
@@ -15,5 +15,6 @@ class User < ApplicationRecord
     message: 'Only valid emails allowed'
     }
     validates_uniqueness_of   :email
-	validates:password, presence:true
+	has_secure_password
+	validates :password, presence: true, length: { minimum: 6 }
 end
