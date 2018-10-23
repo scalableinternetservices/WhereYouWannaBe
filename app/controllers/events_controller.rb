@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if(params.has_key?(:tag_id))
+      @events = Event.where(tag_id:params[:tag_id])
+    else
+      @events = Event.all
+    end 
   end
 
   # GET /events/1

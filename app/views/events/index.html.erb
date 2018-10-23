@@ -1,42 +1,33 @@
-<br> <br> <br> <br> <br> <br>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <p id="notice"><%= notice %></p>
-<h1>Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Tag</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th>Price</th>
-      <th>Creator</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class=row>
+<div class="container">
+<a href = "/events/new" class="btn btn-primary active float-right" role="button" aria-pressed="true">New Event</a>
+</div>
+</div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.tag_id %></td>
-        <td><%= event.location_id %></td>
-        <td><%= event.date %></td>
-        <td><%= event.price %></td>
-        <td><%= event.user_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Attend Event',  new_attendee_path%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @events.each do |event| %>
+<div class="card text-center">
+  <div class="card-header bg-info text-white">
+    <span class="badge badge-pill badge-warning"><%= event.tag_id %></span>
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-default float-right">
+      <%= link_to 'Edit', edit_event_path(event) %>
+    <!--<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit-->
+    </button>
+    <i class="float-left">$<%= event.price %></i>
+    <h5 class="card-title"><%= event.title %></h5>
+    <p class="card-text"><%= event.description %></p>
+    <%= link_to "View Details", event, class:'btn btn-success' %>
+    <%= link_to 'Attend Event',  new_attendee_path, class:'btn btn-warning'%>
+  </div>
+  <div class="card-footer text-muted">
+    <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location_id %></p>
+  </div>
+</div>
 <br>
-<a href = "/events/new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Event</a>
+<% end %>
