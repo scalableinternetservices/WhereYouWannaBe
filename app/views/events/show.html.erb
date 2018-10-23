@@ -28,19 +28,23 @@
     <div class="card-header">
       <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 40, width: 40, class:'rounded-circle'),
                   root_path, id: "logo" %>
+
     </div>
     <div class="card-body">
       <textarea class="form-control" rows="2" id="newComment"></textarea>
-      <a href="#" id="addComment" class="btn btn-primary float-right">Comment</a>
+      <a id="addComment" class="btn btn-primary float-right">Comment</a>
     </div>
   </div>
 </div>
-<div class="col-md-6 offset-md-3">
+<div id="commentsContainer" class=" col-md-6 offset-md-3">
   <% @comments.each do |comment| %>
-    <div class="card">
+    <div class="card commentContainer" data-comment-id ="<%=comment.id%>">
       <div class="card-header">
         <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 50, width: 50, class:'rounded-circle'),
                     root_path, id: "logo" %>
+        <button type="button" class="close closeBtn" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <span> <%= comment.user_id %> </span>
       </div>
       <div class="card-body">
