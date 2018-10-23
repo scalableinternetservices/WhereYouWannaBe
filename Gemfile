@@ -14,9 +14,10 @@ gem 'rake'
 gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'bcrypt',         '3.1.12'
+# gem 'open-iconic-rails', '~> 0.0.1'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
+  gem 'sqlite3', '1.3.13', platforms: :ruby
   gem 'byebug',  '9.0.6', platform: :mri
 end
 
@@ -30,3 +31,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'activemodel'
+
+group :production do
+  gem 'pg'
+end
+
