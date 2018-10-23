@@ -13,6 +13,7 @@ gem 'bootsnap', require: false
 gem 'rake'
 gem 'bootstrap'
 gem 'font-awesome-rails'
+gem 'bcrypt',         '3.1.12'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
