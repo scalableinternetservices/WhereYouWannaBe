@@ -5,9 +5,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if(params.has_key?(:tag_id))
-      @events = Event.where(tag_id:params[:tag_id])
+      @events = Event.joins(:location).joins(:tag).where(tag_id:params[:tag_id])
     else
-      @events = Event.all
+      @events = Event.joins(:location).joins(:tag)
     end 
   end
 

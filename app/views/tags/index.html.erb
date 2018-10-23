@@ -2,7 +2,10 @@
 
 <a href="#" id="addTag" class="btn btn-success active float-right">New Tag</a>
 
-<% @tags.each do |tag| %>
+
+<% @tags.each_slice(@tags.length) do |tags| %>
+<div class="col-lg-6">
+<% tags.each do |tag| %>
 <div class="card text-center" style="width: 18rem;">
   <!--<img class="card-img-top" src="..." alt="Card image cap">-->
   <div class="card-header bg-info text-white">
@@ -14,4 +17,6 @@
   </div>
 </div>
 <br>
+<% end %>
+</div>
 <% end %>
