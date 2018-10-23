@@ -27,14 +27,16 @@
   <div class="container col-md-4 col-md-offset-4">
     <div class="form-group">
       <%= form.label :tag, class: "control-label" %>
-      <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] }, class: "form-control" %>
+      <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] },
+      { :include_blank => "Select Tag"}, {:class => "form-control"} %>
     </div>
   </div>
 
    <div class="container col-md-4 col-md-offset-4">
     <div class="form-group">
     <%= form.label :location, class: "control-label" %>
-    <%= form.collection_select :location_id, Location.all, :id, :name %>
+    <%= form.select :location_id, Location.all.map { |location| [ location.name, location.id ] }, 
+    { :include_blank => "Select Location"}, {:class => "form-control"} %>
   </div>
   </div>
 
@@ -44,7 +46,7 @@
     <%= form.datetime_select :date, class: "form-control" %>
   </div>
   </div>
-
+  
    <div class="container col-md-4 col-md-offset-4">
     <div class="form-group">
     <%= form.label :price, class: "control-label" %>
