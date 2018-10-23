@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    // commands go here
+    //TODO: organize click binding
+
     $("#addComment").click(function() {
        comment = $("#newComment").val();
        user = 1; // for now
@@ -38,5 +39,18 @@ $(document).ready(function() {
                 console.log(result);
             }
         });
+    });
+
+    $(".eventContainer").click(function(){
+        // TODO: check if this is the right way
+        event_id = $(this).data('event-id');
+        document.location.href = '/events/'+event_id;
+        // $.ajax({
+        //     url: '/events/'+event_id,
+        //     type: 'GET',
+        //     success: function(result) {
+        //         console.log(result);
+        //     }
+        // });
     });
 })

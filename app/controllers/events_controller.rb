@@ -14,6 +14,11 @@ class EventsController < ApplicationController
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
     @comments = @event.comments
+    # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
+    # respond_to do |format|
+    #     format.html
+    #     # format.json { render :json => { :redirect => requests_url}}
+    # end
   end
 
   # GET /events/new
