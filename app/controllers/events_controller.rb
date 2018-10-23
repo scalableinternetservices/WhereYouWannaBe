@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if(params.has_key?(:tag_id))
+      @events = Event.where(tag_id:params[:tag_id])
+    else
+      @events = Event.all
+    end 
   end
 
   # GET /events/1
@@ -14,6 +18,11 @@ class EventsController < ApplicationController
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
     @comments = @event.comments
+    # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
+    # respond_to do |format|
+    #     format.html
+    #     # format.json { render :json => { :redirect => requests_url}}
+    # end
   end
 
   # GET /events/new

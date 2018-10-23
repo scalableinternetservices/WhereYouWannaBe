@@ -1,29 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tags</h1>
+<a href="#" id="addTag" class="btn btn-success active float-right">New Tag</a>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.name %></td>
-        <td><%= tag.description %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @tags.each do |tag| %>
+<div class="card text-center" style="width: 18rem;">
+  <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+  <div class="card-header bg-info text-white">
+    <h5><%= tag.name %></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= tag.description %></p>
+    <%= link_to "See Events", events_path(:tag_id=>tag.id), class:'btn btn-primary active' %>
+  </div>
+</div>
 <br>
-
-<%= link_to 'New Tag', new_tag_path %>
+<% end %>
