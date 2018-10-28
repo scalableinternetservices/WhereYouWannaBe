@@ -14,6 +14,7 @@ gem 'rake'
 gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'bcrypt',         '3.1.12'
+gem 'mini_racer', '~> 0.2.3'
 # gem 'open-iconic-rails', '~> 0.0.1'
 
 group :development, :test do
