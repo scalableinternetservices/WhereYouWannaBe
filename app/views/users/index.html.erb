@@ -17,6 +17,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= gravatar_for user, size: 50 %></td>
         <td><%= user.name %></td>
         <td><%= user.age %></td>
         <td><%= user.home_address %></td>
