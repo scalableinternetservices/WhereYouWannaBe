@@ -29,14 +29,16 @@
       <%= form.label :tag, class: "control-label" %>
       <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] },
       { :include_blank => "Select Tag"}, {:class => "form-control"} %>
+      Don't see a relevant tag in the list? Add a new tag <a href = "/tags/new">here.</a>
     </div>
   </div>
 
    <div class="container col-md-4 col-md-offset-4">
     <div class="form-group">
     <%= form.label :location, class: "control-label" %>
-    <%= form.select :location_id, Location.all.map { |location| [ location.name, location.id ] }, 
+    <%= form.select :location_id, Location.all.map { |location| [ location.name, location.id ] },
     { :include_blank => "Select Location"}, {:class => "form-control"} %>
+    Don't see your location in the list? Add a new location <a href = "/locations/new">here.</a>
   </div>
   </div>
 
@@ -46,7 +48,7 @@
     <%= form.datetime_select :date, class: "form-control" %>
   </div>
   </div>
-  
+
    <div class="container col-md-4 col-md-offset-4">
     <div class="form-group">
     <%= form.label :price, class: "control-label" %>
@@ -66,7 +68,7 @@
       <%= form.submit class: "btn btn-large btn-success" %>
     </div>
   </div>
-  
+
   <div class="container col-md-4 col-md-offset-4">
    <div class="btn btn-warning">
       <%= link_to 'Cancel', events_path %>

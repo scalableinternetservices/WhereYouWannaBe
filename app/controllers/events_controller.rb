@@ -6,9 +6,13 @@ class EventsController < ApplicationController
   def index
     if(params.has_key?(:tag_id))
       @events = Event.joins(:location).joins(:tag).where(tag_id:params[:tag_id])
+    elsif(params.has_key?(:location_id))
+      @events = Event.joins(:location).joins(:tag).where(location_id:params[:location_id])
     else
       @events = Event.joins(:location).joins(:tag)
     end 
+    @tags = Tag.all
+    @locations = Location.all
   end
 
   # GET /events/1
@@ -27,6 +31,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    p "WHY IS IT HERE"
     @event = Event.new
   end
 
