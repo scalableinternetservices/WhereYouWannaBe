@@ -29,6 +29,7 @@
       <%= form.label :tag, class: "control-label" %>
       <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] },
       { :include_blank => "Select Tag"}, {:class => "form-control"} %>
+      Don't see a relevant tag in the list? Add a new tag <a href = "/tags/new">here.</a>
     </div>
   </div>
 
