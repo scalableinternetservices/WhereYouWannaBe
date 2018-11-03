@@ -1,32 +1,6 @@
-<<<<<<< HEAD
 <div class="alert alert-success" id="notice">
   <strong>Success!</strong> <%= notice %>
 </div>
-
-=======
-<p>
-  <br>
-  <font size = 4><strong>Hi <%= @user.name %>!</strong></font>
-</p>
-<hr>
-<p>
-  Here are the details of your WhereYouWannaBe account:
-</p>
-<p>
-  <font color=#2E2E2E><strong>Age:</strong></font>
-  <%= @user.age %>
-</p>
-
-<p>
-  <font color=#2E2E2E><strong>Home Address:</strong></font>
-  <%= @user.home_address %>
-</p>
-
-<p>
-  <font color=#2E2E2E><strong>Email Address:</strong></font>
-  <%= @user.email %>
-</p>
->>>>>>> e375e8bdf29aba1d2d499da781d61bcf5aaf6e04
 
 <hr class="">
 <div class="container target">
@@ -44,8 +18,9 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false"><strong>Profile</strong>
-                <%= link_to 'Edit', edit_user_path(@user), class:"float-right" %></i></li>
+                <li class="list-group-item bg-info text-white" contenteditable="false"><strong>Profile</strong>
+                <%= link_to edit_user_path(@user), class:"float-right text-white" do %>
+                <%= material_icon.edit %><% end %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age</strong></span> <%= @user.age %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Home</strong></span> <%= @user.home_address %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email</strong></span> <%= @user.email %></li>
@@ -53,8 +28,7 @@
             </ul>
            <br>
             <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x pull-right"></i>
-                </li>
+                <li class="list-group-item bg-info text-white"><strong>Activity</strong></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
@@ -64,12 +38,42 @@
         </div>
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
+          <!--Events Hosting-->
           <% if @hostedFutureEvents.nil? || @hostedFutureEvents.length==0 %>
             <h4>You have no upcoming events to host :(</h4>
           <% else %>
             <h4>Upcoming Events You Are Hosting</h4>
           <% end %>
           <% @hostedFutureEvents.each do |event| %>
+          <div class="card text-center">
+            <div class="card-header bg-info text-white">
+              <h5><%= event.title %></h5>
+            </div>
+            <div class="card-body">
+              <button type="button" class="btn btn-default float-right">
+                <%= link_to edit_event_path(event), class:"float-right text-mute" do %>
+                <%= material_icon.edit %><% end %>
+              </button>
+              <i class="float-left">$<%= event.price %></i>
+              <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
+              <p class="card-text"><%= event.description %></p>
+              <%= link_to "View Details", event, class:'btn btn-success' %>
+              </div>
+            <div class="card-footer text-muted">
+              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %></p>
+            </div>
+          </div>
+          <br>
+          <% end %>
+          <div id="push"></div>
+          
+          <!--Events Attending-->
+          <% if @eventAttending.nil? || @eventAttending.length==0 %>
+            <h4>You have no upcoming events to attend :(</h4>
+          <% else %>
+            <h4>Upcoming Events You Are Attending</h4>
+          <% end %>
+          <% @eventAttending.each do |event| %>
           <div class="card text-center">
             <div class="card-header bg-info text-white">
               <h5><%= event.title %></h5>
@@ -92,4 +96,7 @@
           <% end %>
           <div id="push"></div>
           </div>
+          
+          </div>
+          
 </div>

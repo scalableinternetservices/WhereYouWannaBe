@@ -38,10 +38,12 @@
     <h5><%= event.title %></h5>
   </div>
   <div class="card-body">
+    <% if current_user.id==event.user_id %>
     <button type="button" class="btn btn-default float-right">
-      <!-- <span class="fa fa-pencil" aria-hidden="true"></span> Edit-->
-      <%= link_to 'Edit', edit_event_path(event) %>
+      <%= link_to edit_event_path(event), class:"float-right text-mute" do %>
+      <%= material_icon.edit %><% end %>
     </button>
+    <% end %>
     <i class="float-left">$<%= event.price %></i>
     <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
     <p class="card-text"><%= event.description %></p>

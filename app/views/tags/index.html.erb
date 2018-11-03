@@ -5,12 +5,12 @@
 <% @tags.each do |tag| %>
 <div class="card text-center" style="width: 18rem;">
   <!--<img class="card-img-top" src="..." alt="Card image cap">-->
-  <div class="card-header bg-secondary text-white">
+  <div class="card-header bg-info text-white">
     <h5><%= tag.name %></h5>
   </div>
   <div class="card-body">
     <p class="card-text"><%= tag.description %></p>
-    <%= link_to "See Events", events_path(:tag_id=>tag.id), class:'btn btn-info active' %>
+    <%= link_to "See Events", events_path(:tag_id=>tag.id), class:'btn btn-success active' %>
   </div>
 </div>
 <br>
