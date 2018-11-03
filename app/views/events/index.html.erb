@@ -23,6 +23,14 @@
         <% end %>
         </div>
       </td>
+      <td>
+      <div class="input-group">
+        <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+          <%= select_tag :location_id,options_from_collection_for_select(@locations, "id", "city"),
+          :onchange => "this.form.submit();",prompt: "Search By City",class: "form-control" %>
+        <% end %>
+        </div>
+      </td>
    </tr>
 </table>
 
@@ -32,13 +40,14 @@
 </div>
 <br>
 
+<div class="col-sm-9" style="" contenteditable="false">
 <% @events.each do |event| %>
 <div class="card text-center">
   <div class="card-header bg-info text-white">
     <h5><%= event.title %></h5>
   </div>
   <div class="card-body">
-    <% if current_user.id==event.user_id %>
+    <% if !current_user.nil? && current_user.id==event.user_id %>
     <button type="button" class="btn btn-default float-right">
       <%= link_to edit_event_path(event), class:"float-right text-mute" do %>
       <%= material_icon.edit %><% end %>
@@ -51,11 +60,12 @@
     <%= link_to 'Attend Event',  "#my-modal", class:'btn btn-warning', "data-toggle" => "modal"  %>
     </div>
   <div class="card-footer text-muted">
-    <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %></p>
+    <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
   </div>
 </div>
 <br>
 <% end %>
+</div>
 
 <div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

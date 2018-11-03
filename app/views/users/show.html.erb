@@ -22,7 +22,7 @@
                 <%= link_to edit_user_path(@user), class:"float-right text-white" do %>
                 <%= material_icon.edit %><% end %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age</strong></span> <%= @user.age %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Home</strong></span> <%= @user.home_address %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">City</strong></span> <%= @user.city %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email</strong></span> <%= @user.email %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined On</strong></span> <%= @user.created_at %></li>
             </ul>
@@ -60,7 +60,7 @@
               <%= link_to "View Details", event, class:'btn btn-success' %>
               </div>
             <div class="card-footer text-muted">
-              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %></p>
+              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
             </div>
           </div>
           <br>
@@ -89,7 +89,7 @@
               <%= link_to "View Details", event, class:'btn btn-success' %>
               </div>
             <div class="card-footer text-muted">
-              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %></p>
+              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
             </div>
           </div>
           <br>

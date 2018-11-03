@@ -9,6 +9,7 @@ class User < ApplicationRecord
 	has_many :attendees
 
 	validates:name, presence:true
+	validates:city, presence:true
 	validates_numericality_of :age, greater_than: -1
 	validates:email, presence:true, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,

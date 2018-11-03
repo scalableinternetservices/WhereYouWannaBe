@@ -7,15 +7,9 @@
 
     <div class="navbar-collapse collapse" id="navbarCollapse" style="align:right;">
       <ul class="navbar-nav mr-auto">
-        <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to "Home", current_user, class:'nav-link'%>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Home", root_path, class:'nav-link'%>
-          </li>
-        <% end %>
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class:'nav-link'%>
+        </li>
         <li class="nav-item">
           <%= link_to "Events", events_path, class:'nav-link'%>
         </li>
