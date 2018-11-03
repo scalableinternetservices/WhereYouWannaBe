@@ -42,7 +42,8 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        flash[:success] = "Location was successfully updated!"
+        format.html { redirect_to @location }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit }

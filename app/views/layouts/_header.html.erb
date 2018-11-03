@@ -7,9 +7,15 @@
 
     <div class="navbar-collapse collapse" id="navbarCollapse" style="align:right;">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class:'nav-link'%>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Home", current_user, class:'nav-link'%>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class:'nav-link'%>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to "Events", events_path, class:'nav-link'%>
         </li>
@@ -19,10 +25,10 @@
         <li class="nav-item">
           <%= link_to "Help", help_path, class:'nav-link' %>
         </li>
-        
+
         <% if logged_in? %>
           <li class="nav-item">
-            <%= link_to "Users", '#', class:'nav-link' %>
+            <%= link_to "Users", users_path, class:'nav-link' %>
           </li>
             <li class="dropdown nav-link">
               <a class="dropdown-toggle" data-toggle="dropdown">
@@ -30,7 +36,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <%= link_to "Profile", current_user,class:"dropdown-item" %>
-                  <%= link_to "Settings", '#',class:"dropdown-item" %>
+                  <%= link_to "Settings", edit_user_path(current_user),class:"dropdown-item" %>
                   <%= link_to "Log out", logout_path, method: :delete,class:"dropdown-item" %>
               </div>
           </li>

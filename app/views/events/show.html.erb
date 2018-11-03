@@ -1,21 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <div id="eventContainer" data-event-id ="<%=@event.id%>" class="col-md-6 offset-md-3 bg-light">
+  <span class="eventOptions float-right"><%= material_icon.keyboard_arrow_down %></span>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Regular link</a>
+    <a class="dropdown-item disabled" href="#">Disabled link</a>
+    <a class="dropdown-item" href="#">Another link</a>
+  </div>
   <h3 class="text-dark"><%= @event.title %></h3>
   <div>
     <p><%= @event.description %></p>
   </div>
   <div class="pull-right">
-    <%= @event.user_id %>
+    <%= @user.name %>
   </div>
   <div class="pull-right">
     <h6><%= @event.date %></h6>
+  </div>
+  <div class="pull-right"> Attendees:
+    <h6><%= @attendee.length %></h6>
   </div>
   <div class="pull-right">
     <span class="badge badge-pill badge-dark"><%= @tag.name %></span>
   </div>
   <div class="pull-right">
-    <h6><%= @location.name %></h6>
+    <h6><%= @event.location.name %></h6>
   </div>
   <div class ="pull-right">
     <h6><%= @event.price %></h6>

@@ -22,6 +22,9 @@ class EventsController < ApplicationController
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
     @comments = @event.comments
+    @user = User.find_by_id(@event.user_id)
+    user_ids =  Attendee.joins(:event).pluck(:user_id)
+    @attendee = User.where("id in (?)", user_ids)
     # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
     # respond_to do |format|
     #     format.html
@@ -59,7 +62,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        flash[:success] = "Event was successfully updated!"
+        format.html { redirect_to @event}
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
