@@ -22,6 +22,9 @@ class EventsController < ApplicationController
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
     @comments = @event.comments
+    @user = User.find_by_id(@event.user_id)
+    user_ids =  Attendee.joins(:event).pluck(:user_id)
+    @attendee = User.where("id in (?)", user_ids)
     # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
     # respond_to do |format|
     #     format.html
