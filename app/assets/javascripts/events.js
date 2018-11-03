@@ -1,5 +1,9 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     //TODO: organize click binding
+    // click and then check target
+    $(function() {
+        $('.datepicker').datepicker();
+    });
 
     $("#addComment").click(function() {
         console.log("ADD!!");
