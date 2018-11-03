@@ -31,7 +31,6 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    p "WHY IS IT HERE"
     @event = Event.new
   end
 

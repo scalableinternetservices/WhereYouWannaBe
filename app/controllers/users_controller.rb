@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @events = Event.where(user_id: @user.id)
+    @hostedFutureEvents = Event.where("date > ? AND user_id = ?", DateTime.now, @user.id)
+    @eventAttending = 
   end
 
   # GET /users/new

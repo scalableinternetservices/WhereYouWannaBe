@@ -2,40 +2,69 @@
   <strong>Success!</strong> <%= notice %>
 </div>
 
-<p>
+
+<hr class="">
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+             <h1 class=""><%= @user.name %></h1>
+           <br>
+        </div>
+      <div class="col-sm-2"><a href="/users" class="pull-right">
+        <img title="profile image" class="img-circle img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
+      </div>
+    </div>
   <br>
-  <font size = 4><strong>Hi <%= @user.name %>!</strong></font>
-</p>
-<hr>
-<p>
-  Here are the details of your WhereYouWannaBe account:
-</p>
-<p>
-  <font color=#2E2E2E><strong>Age:</strong></font>
-  <%= @user.age %>
-</p>
-
-<p>
-  <font color=#2E2E2E><strong>Home Address:</strong></font>
-  <%= @user.home_address %>
-</p>
-
-<p>
-  <font color=#2E2E2E><strong>Email Address:</strong></font>
-  <%= @user.email %>
-</p>
-
-<p>
-  <font color=#2E2E2E><strong>Events you are attending:</strong></font>
-  <% @events.each do |event| %>
-      <%= event.title %>
-      <br>
-  <% end %>
-</p>
-<!--<p>-->
-<!--  <strong>Password:</strong>-->
-<!--  <%= @user.password %>-->
-<!--</p>-->
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false"><strong>Profile</strong>
+                <%= link_to 'Edit', edit_user_path(@user), class:"float-right" %></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Age</strong></span> <%= @user.age %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Home</strong></span> <%= @user.home_address %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email</strong></span> <%= @user.email %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined On</strong></span> <%= @user.created_at %></li>
+            </ul>
+           <br>
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x pull-right"></i>
+                </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78</li>
+            </ul>
+           
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9" style="" contenteditable="false">
+          <% if @hostedFutureEvents.nil? || @hostedFutureEvents.length==0 %>
+            <h4>You have no upcoming events to host :(</h4>
+          <% else %>
+            <h4>Upcoming Events You Are Hosting</h4>
+          <% end %>
+          <% @hostedFutureEvents.each do |event| %>
+          <div class="card text-center">
+            <div class="card-header bg-info text-white">
+              <h5><%= event.title %></h5>
+            </div>
+            <div class="card-body">
+              <button type="button" class="btn btn-default float-right">
+                <!-- <span class="fa fa-pencil" aria-hidden="true"></span> Edit-->
+                <%= link_to 'Edit', edit_event_path(event) %>
+              </button>
+              <i class="float-left">$<%= event.price %></i>
+              <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
+              <p class="card-text"><%= event.description %></p>
+              <%= link_to "View Details", event, class:'btn btn-success' %>
+              </div>
+            <div class="card-footer text-muted">
+              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %></p>
+            </div>
+          </div>
+          <br>
+          <% end %>
+          <div id="push"></div>
+          </div>
+</div>
