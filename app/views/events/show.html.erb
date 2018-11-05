@@ -1,17 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <div id="eventContainer" data-event-id ="<%=@event.id%>" class="col-md-6 offset-md-3 bg-light">
-  <span class="eventOptions float-right"><%= material_icon.keyboard_arrow_down %></span>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Regular link</a>
-    <a class="dropdown-item disabled" href="#">Disabled link</a>
-    <a class="dropdown-item" href="#">Another link</a>
-  </div>
+  <span id="editEvent" class="eventOptions float-right" data-toggle="modal" data-target="#myModal">
+    <%= material_icon.create %>
+  </span>
+  <span id="deleteEvent" class="eventOptions float-right">
+    <%= material_icon.delete %>
+  </span>
+
   <h3 class="text-dark"><%= @event.title %></h3>
   <div>
     <p><%= @event.description %></p>
   </div>
-  <div class="pull-right">
+  <div class="pull-right" userid="<%= @user.id %>">
     <%= @user.name %>
   </div>
   <div class="pull-right">
@@ -64,6 +65,50 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<!-- Modal for event edit -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title">Edit Event</p>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @event, local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :title, class: "control-label"%>
+            <%= form.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :description, class: "control-label" %>
+            <%= form.text_area :description, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :tag, class: "control-label" %>
+            <%= form.select :tag_id, Tag.all.map { |tag| [ tag.name, tag.id ] },
+                            { :include_blank => "Select Tag"}, {:class => "form-control"} %>
+            Don't see a relevant tag in the list? Add a new tag <a href = "/tags/new">here.</a>
+          </div>
+          <div class="form-group">
+            <%= form.label :location, class: "control-label" %>
+            <%= form.select :location_id, Location.all.map { |location| [ location.name, location.id ] },
+                            { :include_blank => "Select Location"}, {:class => "form-control"} %>
+            Don't see your location in the list? Add a new location <a href = "/locations/new">here.</a>
+          </div>
+          <div class="form-group">
+            <%= form.label :price, class: "control-label" %>
+            <%= form.text_field :price, class: "form-control" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button id="updateEvent" type="button" class="btn btn-default">Update</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--<%= link_to 'Edit', edit_event_path(@event) %> |-->

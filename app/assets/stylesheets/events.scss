@@ -23,3 +23,12 @@ input {
 .commentContainer:hover  .closeBtn{
   visibility: visible;
 }
+
+.eventOptions {
+  cursor : pointer;
+}
+
+.modal-body {
+  height:400px;
+  overflow-y: scroll;
+}
