@@ -94,24 +94,12 @@ $(document).on('turbolinks:load', function() {
             type: 'POST',
             data: {event:eventData, _method:'PUT'},
             success: function(result) {
-               alert("event updated");
+                console.log(result);
             },
             failure: function(result) {
-                alert(result);
+                console.log(result);
             }
         });
     });
 
-    // $(".eventContainer").click(function(){
-    //     // TODO: check if this is the right way
-    //     event_id = $(this).data('event-id');
-    //     document.location.href = '/events/'+event_id;
-    //     // $.ajax({
-    //     //     url: '/events/'+event_id,
-    //     //     type: 'GET',
-    //     //     success: function(result) {
-    //     //         console.log(result);
-    //     //     }
-    //     // });
-    // });
 })
