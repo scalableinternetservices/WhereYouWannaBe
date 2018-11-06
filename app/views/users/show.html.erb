@@ -37,12 +37,23 @@
            
         </div>
         <!--/col-3-->
-        <div class="col-sm-9" style="" contenteditable="false">
+        <div class="col-sm-9" style="">
           <!--Events Hosting-->
           <% if @hostedFutureEvents.nil? || @hostedFutureEvents.length==0 %>
-            <h4>You have no upcoming events to host :(</h4>
+            <h4><%if current_user.id == @user.id%>
+                    You Are 
+                  <% else %>
+                      <%= @user.name %> Is
+                  <% end %>    
+            Not Hosting Any Upcoming Events :(</h4>
           <% else %>
-            <h4>Upcoming Events You Are Hosting</h4>
+            <h4>Upcoming Events That 
+            <% if current_user.id== @user.id %>
+              You Are
+            <% else %>
+                <%= @user.name %> Is
+            <% end %>    
+              Hosting</h4>
           <% end %>
           <% @hostedFutureEvents.each do |event| %>
           <div class="card text-center">
@@ -69,9 +80,21 @@
           
           <!--Events Attending-->
           <% if @eventAttending.nil? || @eventAttending.length==0 %>
-            <h4>You have no upcoming events to attend :(</h4>
+            <h4><%if current_user.id == @user.id%>
+                    You Are 
+                  <% else %>
+                      <%= @user.name %> Is
+                  <% end %>    
+            Not Attending Any Upcoming Events :(</h4>
           <% else %>
-            <h4>Upcoming Events You Are Attending</h4>
+            <!--<h4>Upcoming Events You Are Attending</h4>-->
+            <h4>Upcoming Events That 
+            <% if current_user.id== @user.id %>
+              You Are
+            <% else %>
+                <%= @user.name %> Is
+            <% end %>    
+              Attending</h4>
           <% end %>
           <% @eventAttending.each do |event| %>
           <div class="card text-center">
