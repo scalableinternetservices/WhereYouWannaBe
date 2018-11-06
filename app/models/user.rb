@@ -4,9 +4,9 @@ class User < ApplicationRecord
 
 	# attr_reader :name, :age, :email
 
-	has_many :events
-	has_many :comments
-	has_many :attendees
+	has_many :events, dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_many :attendees, dependent: :destroy
 
 	validates:name, presence:true
 	validates:city, presence:true
