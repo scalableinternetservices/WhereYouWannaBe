@@ -28,7 +28,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        flash[:success] = "Location was successfully created."
+        format.html { redirect_to @location}
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
@@ -57,7 +58,8 @@ class LocationsController < ApplicationController
   def destroy
     @location.destroy
     respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
+      flash[:success] = "Location was successfully destroyed."
+      format.html { redirect_to @location }
       format.json { head :no_content }
     end
   end

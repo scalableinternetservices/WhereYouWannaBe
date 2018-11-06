@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       @events = Event.joins(:location).joins(:tag).where("date > ? AND location_id = ?", DateTime.now, params[:location_id])
     else
       @events = Event.joins(:location).joins(:tag).where("date > ?", DateTime.now)
-    end 
+    end
     @tags = Tag.all
     @locations = Location.all
   end
@@ -48,7 +48,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        flash[:success] = "Event was successfully created."
+        format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -77,7 +78,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      flash[:success] = "Event was successfully destroyed."
+      format.html { redirect_to events_url}
       format.json { head :no_content }
     end
   end
