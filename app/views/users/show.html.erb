@@ -14,6 +14,9 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
+                <%= render 'shared/stats' %>
+            </ul>
+            <ul class="list-group">
                 <li class="list-group-item bg-info text-white" contenteditable="false"><strong>Profile</strong>
                 <%= link_to edit_user_path(@user), class:"float-right text-white" do %>
                 <%= material_icon.edit %><% end %></li>
@@ -35,20 +38,21 @@
         <!--/col-3-->
         <div class="col-sm-9" style="">
           <!--Events Hosting-->
+          <%= render 'follow_form' if logged_in? %>
           <% if @hostedFutureEvents.nil? || @hostedFutureEvents.length==0 %>
             <h4><%if current_user.id == @user.id%>
-                    You Are 
+                    You Are
                   <% else %>
                       <%= @user.name %> Is
-                  <% end %>    
+                  <% end %>
             Not Hosting Any Upcoming Events :(</h4>
           <% else %>
-            <h4>Upcoming Events That 
+            <h4>Upcoming Events That
             <% if current_user.id== @user.id %>
               You Are
             <% else %>
                 <%= @user.name %> Is
-            <% end %>    
+            <% end %>
               Hosting</h4>
           <% end %>
           <% @hostedFutureEvents.each do |event| %>
@@ -77,19 +81,19 @@
           <!--Events Attending-->
           <% if @eventAttending.nil? || @eventAttending.length==0 %>
             <h4><%if current_user.id == @user.id%>
-                    You Are 
+                    You Are
                   <% else %>
                       <%= @user.name %> Is
-                  <% end %>    
+                  <% end %>
             Not Attending Any Upcoming Events :(</h4>
           <% else %>
             <!--<h4>Upcoming Events You Are Attending</h4>-->
-            <h4>Upcoming Events That 
+            <h4>Upcoming Events That
             <% if current_user.id== @user.id %>
               You Are
             <% else %>
                 <%= @user.name %> Is
-            <% end %>    
+            <% end %>
               Attending</h4>
           <% end %>
           <% @eventAttending.each do |event| %>
