@@ -62,14 +62,21 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
+      p "hello kichu keech"
+      p event_params[:title]
+      @event = Event.find(params[:id])
+
+      p @event.errors.inspect
       if @event.update(event_params)
         flash[:success] = "Event was successfully updated!"
         format.html { redirect_to @event}
         format.json { render :show, status: :ok, location: @event }
       else
+        p @event.errors.inspect
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+      p @event.errors.inspect
     end
   end
 

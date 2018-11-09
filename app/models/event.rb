@@ -7,6 +7,6 @@ class Event < ApplicationRecord
 
   validates :title, presence:true
   validates_length_of :description, maximum: 500, allow_blank: true
-  validates :date, inclusion: { in: (Date.today..Date.today+5.years) }
+  # validates :date, inclusion: { in: (Date.today..Date.today+5.years) }
   validates_numericality_of :price, greater_than: -1
 end

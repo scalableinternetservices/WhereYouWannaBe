@@ -6,7 +6,6 @@ $(document).on('turbolinks:load', function() {
     });
 
     $("#addComment").click(function() {
-        console.log("ADD!!");
        comment = $("#newComment").val();
        user = 1; // for now
         event = $("#eventContainer").data('event-id');
@@ -60,16 +59,47 @@ $(document).on('turbolinks:load', function() {
         });
     });
 
-    $(".eventContainer").click(function(){
-        // TODO: check if this is the right way
-        event_id = $(this).data('event-id');
-        document.location.href = '/events/'+event_id;
-        // $.ajax({
-        //     url: '/events/'+event_id,
-        //     type: 'GET',
-        //     success: function(result) {
-        //         console.log(result);
-        //     }
-        // });
+    $("#deleteEvent").click(function() {
+        event_id = $("#eventContainer").data("event-id");
+        $.ajax({
+            url: '/events/'+event_id,
+            type: 'DELETE',
+            success: function(result) {
+                console.log(result);
+            },
+            failure: function(result) {
+                console.log(result);
+            }
+        });
     });
+
+    $("#updateEvent").click(function() {
+        event_id = $("#eventContainer").data("event-id");
+        event_title = $("#event_title").val();
+        event_description = $("#event_description").val();
+        tag = $("#event_tag_id").val();
+        event_location = $("#event_location_id").val();
+        event_price = $("#event_price").val();
+        var eventData = {
+            title: event_title,
+            description: event_description,
+            tag_id: parseInt(tag),
+            location_id: parseInt(event_location),
+            price: parseInt(event_price),
+            date:new Date($.now()),
+            user_id:1
+        }
+        $.ajax({
+            url: '/events/'+event_id,
+            type: 'POST',
+            data: {event:eventData, _method:'PUT'},
+            success: function(result) {
+                console.log(result);
+            },
+            failure: function(result) {
+                console.log(result);
+            }
+        });
+    });
+
 })
