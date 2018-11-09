@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
+             city:"Santa Barbara",
              age: 25,
              password:              "foobar",
              password_confirmation: "foobar",
@@ -15,10 +16,20 @@ User.create!(name:  "Example User",
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
+  city = "Goleta"
   password = "password"
   User.create!(name:  name,
                email: email,
                age: 25,
+               city: city,
                password:              password,
                password_confirmation: password)
+end
+
+99.times do |n|
+  name  = "tag-#{n+1}"
+  description = "description-#{n}"
+  Tag.create!(name:  name,
+               description: description
+              )
 end

@@ -1,14 +1,50 @@
 <% provide(:title, "Home") %>
-<div class="container" id="homebody">
-<div class="center jumbotron" >
 
-<h1 class="text-center">WhereYouWannaBe</h1>
-<h6 class="text-center">
-  Easy access to events near you!
-</h6>
-<center>
- <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-warning" %></center>
-
-</div>    
-<br>
-</div>
+<% if logged_in? %>
+    <div class="col-sm-9" style="" contenteditable="false">
+          <!--Events Hosting-->
+          <% if @events.length > 0 %>
+          <h4 class="text-muted">Recommended Events For You</h4>
+          <% @events.each do |event| %>
+          <div class="card text-center">
+            <div class="card-header bg-info text-white">
+              <h5><%= event.title %></h5>
+            </div>
+            <div class="card-body">
+            <% if !current_user.nil? && current_user.id==event.user_id %>
+              <button type="button" class="btn btn-default float-right">
+                <%= link_to edit_event_path(event), class:"float-right text-mute" do %>
+                <%= material_icon.edit %><% end %>
+              </button>
+            <% end %>  
+              <i class="float-left">$<%= event.price %></i>
+              <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
+              <p class="card-text"><%= event.description %></p>
+              <%= link_to "View Details", event, class:'btn btn-success' %>
+              <%= link_to 'Attend Event',  "#my-modal", class:'btn btn-warning', "data-toggle" => "modal"  %>
+              </div>
+            <div class="card-footer text-muted">
+              <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
+            </div>
+          </div>
+          <br>
+          <% end %>
+          <div id="push"></div>
+          <% else %>
+            <h4 class="text-muted">No Events Have Been Posted Yet</h4>
+          <% end %>
+    </div>      
+<% else %>
+    <div class="container" id="homebody">
+        <div class="center jumbotron" >
+            <h1 class="text-center">WhereYouWannaBe</h1>
+            <h6 class="text-center">
+              Easy access to events near you!
+            </h6>
+            <center>
+             <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-warning" %>
+            </center>
+        </div>    
+        <br>
+    </div>
+<% end %>

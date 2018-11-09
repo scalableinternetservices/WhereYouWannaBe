@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @events = Event.where(user_id: @user.id)
+    @hostedFutureEvents = Event.where("date > ? AND user_id = ?", DateTime.now, @user.id)
+    @eventAttending = Event.joins(:attendees).where("date > ? AND attendees.user_id = ?", DateTime.now, @user.id)
   end
 
   # GET /users/new
@@ -49,7 +50,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash[:success] = "User was successfully updated!"
+        format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -77,17 +79,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :age, :home_address, :email, :password,:password_confirmation)
+      params.require(:user).permit(:name, :age, :home_address,:city, :email, :password,:password_confirmation)
     end
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+
 
     # Confirms the correct user.
     def correct_user
