@@ -16,10 +16,9 @@ gem 'material_icons'
 gem 'bcrypt',         '3.1.12'
 
 gem 'faker',          '1.7.3'
-gem 'will_paginate',           '3.1.6'
-gem 'bootstrap-will_paginate', '1.0.0'
 gem 'mini_racer', '~> 0.2.3'
 gem 'jquery-ui-rails'
+gem 'will_paginate-bootstrap4'
 # gem 'open-iconic-rails', '~> 0.0.1'
 
 group :development, :test do
