@@ -5,11 +5,11 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if(params.has_key?(:tag_id))
-      @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ?", DateTime.now, params[:tag_id])
+      @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ?", DateTime.now, params[:tag_id]).paginate(page: params[:page],per_page:10)
     elsif(params.has_key?(:location_id))
-      @events = Event.joins(:location).joins(:tag).where("date > ? AND location_id = ?", DateTime.now, params[:location_id])
+      @events = Event.joins(:location).joins(:tag).where("date > ? AND location_id = ?", DateTime.now, params[:location_id]).paginate(page: params[:page],per_page:10)
     else
-      @events = Event.joins(:location).joins(:tag).where("date > ?", DateTime.now)
+      @events = Event.joins(:location).joins(:tag).where("date > ?", DateTime.now).paginate(page: params[:page],per_page:10)
     end
     @tags = Tag.all
     @locations = Location.all
