@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if(params.has_key?(:tag_id))
-      @events = Event.joins(:location).joins(:tag).where(tag_id:params[:tag_id])
+      @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ?", DateTime.now, params[:tag_id]).paginate(page: params[:page],per_page:10)
     elsif(params.has_key?(:location_id))
-      @events = Event.joins(:location).joins(:tag).where(location_id:params[:location_id])
+      @events = Event.joins(:location).joins(:tag).where("date > ? AND location_id = ?", DateTime.now, params[:location_id]).paginate(page: params[:page],per_page:10)
     else
-      @events = Event.joins(:location).joins(:tag)
-    end 
+      @events = Event.joins(:location).joins(:tag).where("date > ?", DateTime.now).paginate(page: params[:page],per_page:10)
+    end
     @tags = Tag.all
     @locations = Location.all
   end
@@ -35,7 +35,6 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    p "WHY IS IT HERE"
     @event = Event.new
   end
 
@@ -50,7 +49,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        flash[:success] = "Event was successfully created."
+        format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -69,8 +69,8 @@ class EventsController < ApplicationController
 
       p @event.errors.inspect
       if @event.update(event_params)
-        p @event.errors.inspect
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        flash[:success] = "Event was successfully updated!"
+        format.html { redirect_to @event}
         format.json { render :show, status: :ok, location: @event }
       else
         p @event.errors.inspect
@@ -86,7 +86,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      flash[:success] = "Event was successfully destroyed."
+      format.html { redirect_to events_url}
       format.json { head :no_content }
     end
   end

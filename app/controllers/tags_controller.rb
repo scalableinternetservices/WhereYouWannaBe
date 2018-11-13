@@ -4,7 +4,8 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    # @tags = Tag.all
+    @tags = Tag.paginate(page: params[:page])
   end
 
   # GET /tags/1
@@ -28,7 +29,8 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        flash[:success] = "Tag was successfully created!"
+        format.html { redirect_to @tag }
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -42,7 +44,8 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+        flash[:success] = "Tag was successfully updated!"
+        format.html { redirect_to @tag }
         format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit }
