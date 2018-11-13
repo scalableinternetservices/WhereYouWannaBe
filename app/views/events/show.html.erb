@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <div id="eventContainer" data-event-id ="<%=@event.id%>" class="col-md-6 offset-md-3 bg-light">
-  <span id="editEvent" class="eventOptions float-right" data-toggle="modal" data-target="#myModal">
-    <%= material_icon.create %>
-  </span>
-  <span id="deleteEvent" class="eventOptions float-right">
-    <%= material_icon.delete %>
-  </span>
+  <% if current_user.id == @user.id %>
+    <span id="editEvent" class="eventOptions float-right" data-toggle="modal" data-target="#myModal">
+      <%= material_icon.create %>
+    </span>
+    <span id="deleteEvent" class="eventOptions float-right">
+      <%= material_icon.delete %>
+    </span>
+  <% end %>
 
   <h3 class="text-dark"><%= @event.title %></h3>
   <div>
@@ -53,9 +55,11 @@
       <div class="card-header">
         <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 50, width: 50, class:'rounded-circle'),
                     root_path, id: "logo" %>
-        <button type="button" class="close closeBtn" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <% if current_user.id == comment.user_id %>
+          <button type="button" class="close closeBtn" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <% end %>
         <span> <%= comment.user_id %> </span>
       </div>
       <div class="card-body">

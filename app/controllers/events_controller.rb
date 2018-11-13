@@ -21,6 +21,7 @@ class EventsController < ApplicationController
     @comment = Comment.new
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
+    # @comments = Comment.includes(:user).map { |@event.comments| }
     @comments = @event.comments
     @user = User.find_by_id(@event.user_id)
     user_ids =  Attendee.joins(:event).pluck(:user_id)
