@@ -1,3 +1,5 @@
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :location
@@ -9,4 +11,6 @@ class Event < ApplicationRecord
   validates_length_of :description, maximum: 500, allow_blank: true
   # validates :date, inclusion: { in: (Date.today..Date.today+5.years) }
   validates_numericality_of :price, greater_than: -1
+
+  mount_uploader :avatar, AvatarUploader
 end
