@@ -18,3 +18,4 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery-ui
+//= require activestorage
