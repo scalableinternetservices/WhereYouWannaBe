@@ -4,6 +4,7 @@
         <div class="col-sm-10">
              <h1 class=""><%= @user.name %></h1>
            <br>
+           <%= render 'follow_form' if logged_in? %><br>
         </div>
       <div class="col-sm-2"><a href="/users" class="pull-right">
         <img title="profile image" class="img-circle img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
@@ -13,9 +14,6 @@
     <div class="row">
         <div class="col-sm-3">
             <!--left col-->
-            <ul class="list-group">
-                <%= render 'shared/stats' %>
-            </ul>
             <ul class="list-group">
                 <li class="list-group-item bg-info text-white" contenteditable="false"><strong>Profile</strong>
                 <%= link_to edit_user_path(@user), class:"float-right text-white" do %>
@@ -30,22 +28,23 @@
                 <li class="list-group-item bg-info text-white"><strong>Activity</strong></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Following</strong></span>
+                  <a href="<%= following_user_path(@user) %>"><%= @user.following.count%></a></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span>
+                  <a href="<%= followers_user_path(@user) %>"> <%= @user.followers.count%></a></li>
             </ul>
 
         </div>
         <!--/col-3-->
         <div class="col-sm-9" style="">
           <!--Events Hosting-->
-          <%= render 'follow_form' if logged_in? %>
           <% if @hostedFutureEvents.nil? || @hostedFutureEvents.length==0 %>
             <h4><%if current_user.id == @user.id%>
                     You Are
                   <% else %>
                       <%= @user.name %> Is
                   <% end %>
-            Not Hosting Any Upcoming Events :(</h4>
+            Not Hosting Any Upcoming Events !</h4>
           <% else %>
             <h4>Upcoming Events That
             <% if current_user.id== @user.id %>
@@ -85,7 +84,7 @@
                   <% else %>
                       <%= @user.name %> Is
                   <% end %>
-            Not Attending Any Upcoming Events :(</h4>
+            Not Attending Any Upcoming Events !</h4>
           <% else %>
             <!--<h4>Upcoming Events You Are Attending</h4>-->
             <h4>Upcoming Events That

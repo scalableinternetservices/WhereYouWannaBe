@@ -21,7 +21,7 @@
         <td><%= user.city %></td>
         <td>
           <% if current_user.admin? || current_user?(user) %>
-            <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete User', user, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
        </td>
       </tr>
