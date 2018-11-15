@@ -101,5 +101,31 @@ $(document).on('turbolinks:load', function() {
             }
         });
     });
+    
+     $("#createAttendee").click(function(event) {
+         console.log($(event.target).parents("#eventIndex"));
+       // event_id = event.target.parent(".card-body").data("event-id");
+        user_id = $("#eventIndex").data("user-id");
+        guests_count = $("#guests_count").val();
+        console.log("HERE");
+        //console.log(event_id);
+        console.log(user_id);
+        console.log(guests_count);
+        var attendeeData = {
+            event_id: event_id,
+            user_id: user_id,
+            guests_count: guests_count,
+            updated_at:new Date($.now())
+        }
+        $.post("/attendees",
+        {
+            attendee : attendeeData
+            // dataType: 'json',
+            // contentType: "application/json",
+            // Accept:"application/json"
+        },function(data, status){
+            console.log(result);
+        });
+    });
 
 })
