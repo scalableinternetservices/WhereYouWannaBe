@@ -15,6 +15,10 @@
   <div class="pull-right" userid="<%= @user.id %>">
     <%= @user.name %>
   </div>
+  <div class="pull-right" userid="<%= @user.id %>">
+    <%= image_tag @event.avatar, :size => '260x180' %>
+  </div>
+  <br>
   <div class="pull-right">
     <h6><%= @event.date %></h6>
   </div>
