@@ -101,10 +101,16 @@ $(document).on('turbolinks:load', function() {
             }
         });
     });
+
+    $(".attnedEvent").click(function(event) {
+       event_id = $(event.target).parents(".eventBody").data("user-id");
+       $("#my-modal").modal();
+       $("#my-modal").data("event-id", event_id);
+    });
     
      $("#createAttendee").click(function(event) {
          console.log($(event.target).parents("#eventIndex"));
-       // event_id = event.target.parent(".card-body").data("event-id");
+       event_id = $("#my-modal").data("event-id");
         user_id = $("#eventIndex").data("user-id");
         guests_count = $("#guests_count").val();
         console.log("HERE");
@@ -123,7 +129,7 @@ $(document).on('turbolinks:load', function() {
             // dataType: 'json',
             // contentType: "application/json",
             // Accept:"application/json"
-        },function(data, status){
+        },function(result){
             console.log(result);
         });
     });
