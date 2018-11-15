@@ -57,7 +57,8 @@
     <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
     <p class="card-text"><%= event.description %></p>
     <%= link_to "View Details", event, class:'btn btn-success' %>
-    <%= link_to 'Attend Event',  "#my-modal", class:'btn btn-warning', "data-toggle" => "modal"  %>
+    <%#= link_to 'Attend Event',  "#my-modal", class:'btn btn-warning', "data-toggle" => "modal"  %>
+    <button type="button" class="attnedEvent btn btn-warning">Attend Event</button>
     </div>
   <div class="card-footer text-muted">
     <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
