@@ -16,7 +16,9 @@
     <%= @user.name %>
   </div>
   <div class="pull-right" userid="<%= @user.id %>">
-    <%= image_tag @event.avatar, :size => '260x180' %>
+    <% if @event.avatar.present? %>
+      <%= image_tag @event.avatar, :size => '260x180' %>
+    <% end %>
   </div>
   <br>
   <div class="pull-right">
