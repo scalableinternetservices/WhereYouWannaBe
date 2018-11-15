@@ -1,4 +1,5 @@
 require 'carrierwave'
+require 'mini_magick'
 require 'carrierwave/orm/activerecord'
 class Event < ApplicationRecord
   belongs_to :user

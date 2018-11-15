@@ -25,9 +25,7 @@ class EventsController < ApplicationController
     @user = User.find_by_id(@event.user_id)
     user_ids =  Attendee.joins(:event).pluck(:user_id)
     @attendee = User.where("id in (?)", user_ids)
-    uploader = AvatarUploader.new
-    uploader.store!(@event.avatar)
-    @event.avatar = params[:avatar]
+    @event.avatar = Event.find(params[:id]).avatar
     # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
     # respond_to do |format|
     #     format.html
@@ -54,6 +52,9 @@ class EventsController < ApplicationController
         flash[:success] = "Event was successfully created."
         format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @event }
+        uploader = AvatarUploader.new
+        uploader.store!(@event.avatar)
+        @event.avatar = uploader.url
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

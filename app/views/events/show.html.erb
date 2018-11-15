@@ -11,7 +11,10 @@
     <p><%= @event.description %></p>
   </div>
   <div class="pull-right" userid="<%= @user.id %>">
-    <%= @user.name %>
+    <!-- Add event avatar here -->
+    <% if @event.avatar.present? %>
+      <%= image_tag @event.avatar.thumb.url %>
+    <% end %>
   </div>
   <div class="pull-right" userid="<%= @user.id %>">
     <%= @user.name %>
