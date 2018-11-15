@@ -37,3 +37,13 @@ input {
    height:10%;
    overflow-y:hidden;
 }
+
+.img-circular{
+ width: 100px;
+ height: 100px;
+ background-size: cover;
+ display: block;
+ border-radius: 100px;
+ -webkit-border-radius: 100px;
+ -moz-border-radius: 100px;
+}

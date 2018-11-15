@@ -53,6 +53,11 @@
       <%= material_icon.edit %><% end %>
     </button>
     <% end %>
+    <div class="float-right" userid="<%= current_user.id %>">
+      <% if event.avatar.present? %>
+        <%= image_tag event.avatar, :class=> "img-circular", :align=> "center"%>
+      <% end %>
+    </div>
     <i class="float-left">$<%= event.price %></i>
     <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
     <p class="card-text"><%= event.description %></p>
