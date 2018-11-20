@@ -21,10 +21,12 @@ class EventsController < ApplicationController
     @comment = Comment.new
     @tag = Tag.find_by_id(@event.tag_id)
     @location = Location.find_by_id(@event.location_id)
+    # @comments = Comment.includes(:user).map { |@event.comments| }
     @comments = @event.comments
     @user = User.find_by_id(@event.user_id)
     user_ids =  Attendee.joins(:event).pluck(:user_id)
     @attendee = User.where("id in (?)", user_ids)
+    @event.avatar = Event.find(params[:id]).avatar
     # render :js => "window.location.href='"+events_path+"/"+params[:id] if params[:id].present?
     # respond_to do |format|
     #     format.html
@@ -99,6 +101,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :description, :tag_id, :location_id, :date, :price, :user_id)
+      params.require(:event).permit(:title, :description, :tag_id, :location_id, :date, :price, :user_id, :avatar)
     end
 end
