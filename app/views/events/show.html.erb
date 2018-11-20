@@ -1,3 +1,5 @@
+<%=image_tag google_map(center: [ "34.4098", "-119.697" ].join(','))%>
+
 <div id="eventContainer" data-event-id ="<%=@event.id%>" class="col-md-6 offset-md-3 bg-light">
   <span id="editEvent" class="eventOptions float-right" data-toggle="modal" data-target="#myModal">
     <%= material_icon.create %>

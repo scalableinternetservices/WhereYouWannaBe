@@ -14,6 +14,7 @@ gem 'rake'
 gem 'bootstrap'
 gem 'material_icons'
 gem 'bcrypt',         '3.1.12'
+gem 'gmaps4rails'
 
 gem 'faker',          '1.7.3'
 gem 'mini_racer', '~> 0.2.3'
