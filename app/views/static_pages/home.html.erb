@@ -10,7 +10,7 @@
             <div class="card-header bg-info text-white">
               <h5><%= event.title %></h5>
             </div>
-            <div class="card-body">
+            <div class="card-body eventBody" data-event-id ="<%=event.id%>">
             <% if !current_user.nil? && current_user.id==event.user_id %>
               <button type="button" class="btn btn-default float-right">
                 <%= link_to edit_event_path(event), class:"float-right text-mute" do %>
@@ -21,7 +21,7 @@
               <h6 class="card-title"><span class="badge badge-pill badge-warning"><%= event.tag.name %></span></h6>
               <p class="card-text"><%= event.description %></p>
               <%= link_to "View Details", event, class:'btn btn-success' %>
-              <%= link_to 'Attend Event',  "#my-modal", class:'btn btn-warning', "data-toggle" => "modal"  %>
+              <%= link_to 'Attend Event',  "#my-modal", class:'attnedEvent btn btn-warning', "data-toggle" => "modal"  %>
               </div>
             <div class="card-footer text-muted">
               <p>When : <%= event.date %> &nbsp &nbsp Where: <%= event.location.name %>, <%= event.location.city %></p>
@@ -48,3 +48,31 @@
         <br>
     </div>
 <% end %>
+
+<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">RSVP To Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="attendeeBody">
+        <%= form_with(model: @attendee, local: true) do |form| %>
+          <div class="container col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <%= form.label :guests_count, class: "control-label"%>
+              <%= form.text_field :guests_count, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="createAttendee" type="button" class="btn btn-success">RSVP</button>
+      </div>
+    </div>
+  </div>
+</div>
+

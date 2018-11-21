@@ -102,36 +102,37 @@ $(document).on('turbolinks:load', function() {
         });
     });
 
-    $(".attnedEvent").click(function(event) {
-       event_id = $(event.target).parents(".eventBody").data("user-id");
-       $("#my-modal").modal();
-       $("#my-modal").data("event-id", event_id);
-    });
+    // $(".attnedEvent").click(function(event) {
+    //    event_id = $(event.target).parents(".eventBody").data("event-id");
+    //    $("#my-modal").modal();
+    //    $("#my-modal").data("event-id", event_id);
+    // });
     
-     $("#createAttendee").click(function(event) {
-         console.log($(event.target).parents("#eventIndex"));
-       event_id = $("#my-modal").data("event-id");
-        user_id = $("#eventIndex").data("user-id");
-        guests_count = $("#guests_count").val();
-        console.log("HERE");
-        //console.log(event_id);
-        console.log(user_id);
-        console.log(guests_count);
-        var attendeeData = {
-            event_id: event_id,
-            user_id: user_id,
-            guests_count: guests_count,
-            updated_at:new Date($.now())
-        }
-        $.post("/attendees",
-        {
-            attendee : attendeeData
-            // dataType: 'json',
-            // contentType: "application/json",
-            // Accept:"application/json"
-        },function(result){
-            console.log(result);
-        });
-    });
+     // $("#createAttendee").click(function(event) {
+     //   event_id = $("#my-modal").data("event-id");
+     //   console.log("check me!");
+     //   console.log(event_id);
+     //    user_id = $("#eventIndex").data("user-id");
+     //    guests_count = $("#guests_count").val();
+     //    console.log("HERE");
+     //    //console.log(event_id);
+     //    console.log(user_id);
+     //    console.log(guests_count);
+     //    var attendeeData = {
+     //        event_id: event_id,
+     //        user_id: user_id,
+     //        guests_count: guests_count,
+     //        updated_at:new Date($.now())
+     //    }
+     //    $.post("/attendees",
+     //    {
+     //        attendee : attendeeData
+     //        // dataType: 'json',
+     //        // contentType: "application/json",
+     //        // Accept:"application/json"
+     //    },function(result){
+     //        console.log(result);
+     //    });
+    // });
 
 })
