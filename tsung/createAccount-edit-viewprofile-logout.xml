@@ -1,3 +1,4 @@
+<!--This is a combination of GET and POST requests. However, the data in the GET request is limited-->
 <?xml version="1.0"?>
 <!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [] >
 <tsung loglevel="notice">
@@ -12,10 +13,9 @@
     <server host="localhost" port="80" type="tcp"></server>
   </servers>
 
-
   <load>
-    <arrivalphase phase="1" duration="1" unit="second">
-      <users arrivalrate="1" unit="second"></users>
+    <arrivalphase phase="1" duration="1" unit="minute">
+      <users arrivalrate="10" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -60,7 +60,7 @@
           contents="user[home_address]=San Clemente Villages&amp;user[age]=30&amp;commit=Update User" 
           content_type="application/x-www-form-urlencoded" />
         </request>
-
+        
         <!-- Log out -->
 
         <request subst="true">
@@ -72,6 +72,10 @@
         <request subst="true">
           <http url="/login" method="POST" version="1.1" contents="session[email]=whereyouwannabe%%_counter%%@gmail.com&amp;
           session[password]=foobar&amp;commit=Log in" content_type="application/x-www-form-urlencoded" />
+        </request>
+        
+        <request subst="true">
+          <http url="/users/whereyouwannabe%%_counter%%" method="GET" version="1.1" />
         </request>
 
         <!-- Log out -->
