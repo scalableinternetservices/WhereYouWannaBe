@@ -1,5 +1,7 @@
 class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update,:destroy, :index,:show,:new]
+  before_action :admin_user, only: :destroy
 
   # GET /attendees
   # GET /attendees.json

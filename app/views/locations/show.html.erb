@@ -1,32 +1,25 @@
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @location.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @location.city %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @location.capacity %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @location.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @location.phone %>
-</p>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<div class="row">
+<div class="container">
+    <a href="/locations/index" class="btn btn-warning active float-left">Back</a>
+</div></br>
+<div class="card text-center">
+  <div class="card-header bg-info text-white">
+    <h5><%= @location.name %></h5>
+  </div>
+  <div class="card-body eventBody">
+    <% if current_user.admin? %>
+    <button type="button" class="btn btn-default float-right">
+      <%= link_to edit_location_path(@location), class:"float-right text-mute" do %>
+      <%= material_icon.edit %><% end %>
+    </button>
+    <% end %>
+    <i class="float-left">Capacity: <%= @location.capacity %></i>
+    <h6 class="card-title"><span class="badge badge-pill badge-success"><%= @location.city %></span></h6>
+    <p class="card-text"><%= @location.address %></p>
+    
+    </div>
+  <div class="card-footer text-muted">
+    <p>Emil : <%= @location.email %> &nbsp &nbsp Phone: <%= @location.phone %></p>
+  </div>
+</div>
+</div>
