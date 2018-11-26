@@ -1,29 +1,29 @@
-<h1>Attendees</h1>
-
-<table>
-  <thead>
+<div class="row">
+<div class = "col-sm-3"></div>
+<h1>Who's Attending Upcoming Events?</h1>
+<table class="table table-striped col-sm-9">
+  <thead class = "bg-info text-white">
     <tr>
       <th>Event</th>
-      <th>User</th>
-      <th>Guests count</th>
+      <th>Attendee</th>
+      <th>Guests</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @attendees.each do |attendee| %>
+     <% @attendees.each do |attendee| %>
       <tr>
-        <td><%= attendee.event_id %></td>
-        <td><%= attendee.user_id %></td>
+        <td><%= attendee.event.title %></td>
+        <td><%= attendee.user.name %></td>
         <td><%= attendee.guests_count %></td>
         <td><%= link_to 'Show', attendee %></td>
-        <td><%= link_to 'Edit', edit_attendee_path(attendee) %></td>
-        <td><%= link_to 'Destroy', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin? || current_user?(user) %>
+          <td><%= link_to 'Delete', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end%>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
-
-<%= link_to 'New Attendee', new_attendee_path %>

@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
     respond_to do |format|
       if @attendee.save
         flash[:success] = "Attendee was successfully created."
-        format.html { redirect_to @attendee}
+        format.html { redirect_to action:"index"}
         format.json { render :show, status: :created, location: @attendee }
       else
         format.html { render :new }
