@@ -1,0 +1,80 @@
+<!--This file allows us test static pages including the front page without logging in. This XML gradually increases the arrival rate from 10-80 per second-->
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [] >
+<tsung loglevel="notice">
+
+  <!-- Client side setup -->
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers='15000'/>
+  </clients>
+
+  <!-- Server side setup -->
+  <servers>
+    <server host="URL" port="80" type="tcp"></server>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="1" unit="minute">
+      <users arrivalrate="10" unit="second"></users>
+    </arrivalphase>
+   <arrivalphase phase="2" duration="1" unit="minute">
+      <users arrivalrate="20" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="1" unit="minute">
+      <users arrivalrate="30" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="4" duration="1" unit="minute">
+      <users arrivalrate="40" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="5" duration="1" unit="minute">
+      <users arrivalrate="50" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="6" duration="1" unit="minute">
+      <users arrivalrate="60" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="7" duration="1" unit="minute">
+      <users arrivalrate="70" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="8" duration="1" unit="minute">
+      <users arrivalrate="80" unit="second"></users>
+    </arrivalphase>
+  </load>
+
+  <options>
+    <!-- Set connection timeout to 2 seconds -->
+    <option name="global_ack_timeout" value="2000"></option>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+<!--Scenario: Browse through a few static pages-->
+
+  <sessions>
+    <session name="about" probability="50" type="ts_http">
+
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <request>
+        <http url="/about" method="GET" version="1.1"/>
+     </request>
+
+    </session>
+
+    <session name="contact" probability="50" type="ts_http">
+
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+     <request>
+        <http url="/contact" method="GET" version="1.1"/>
+     </request>
+
+    </session>
+  </sessions>
+</tsung>
