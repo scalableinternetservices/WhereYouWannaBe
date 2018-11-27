@@ -12,4 +12,9 @@ module EventsHelper
     #   return http.head(url.request_uri)['Content-Type'].start_with? 'image'
     # end
     end
+
+    def optimizeThumbnails(image)
+      image_optim = ImageOptim.new(:nice => 1)
+      image_optim.optimize_image(image)
+    end
 end
