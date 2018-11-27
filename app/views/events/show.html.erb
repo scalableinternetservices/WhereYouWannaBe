@@ -19,7 +19,7 @@
   </div>
   <div class="pull-right" userid="<%= @user.id %>">
     <% if @event.avatar.present? && remote_file_exists?(@event.avatar)%>
-      <%= image_tag @event.avatar, :size => '260x180' %>
+      <%= image_tag @event.avatar, :size => '144x100' %>
     <% end %>
   </div>
   <br>
