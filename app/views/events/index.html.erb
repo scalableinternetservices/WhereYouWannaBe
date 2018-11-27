@@ -54,7 +54,7 @@
     </button>
     <% end %>
     <div class="float-right" userid="<%= current_user.id %>">
-      <% if event.avatar.present? %>
+      <% if event.avatar.present? && remote_file_exists?(event.avatar)%>
         <%= image_tag event.avatar, :class=> "img-circular", :align=> "center"%>
       <% end %>
     </div>

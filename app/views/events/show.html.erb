@@ -18,7 +18,7 @@
     <%= @user.name %>
   </div>
   <div class="pull-right" userid="<%= @user.id %>">
-    <% if @event.avatar.present? %>
+    <% if @event.avatar.present? && remote_file_exists?(@event.avatar)%>
       <%= image_tag @event.avatar, :size => '260x180' %>
     <% end %>
   </div>
