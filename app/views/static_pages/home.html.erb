@@ -3,8 +3,11 @@
 <% if logged_in? %>
     <div class="col-sm-9" style="" contenteditable="false">
           <!--Events Hosting-->
+
           <% if @events.length > 0 %>
+
           <h4 class="text-muted">Recommended Events For You</h4>
+          <%= will_paginate @events %>
           <% @events.each do |event| %>
           <div class="card text-center">
             <div class="card-header bg-info text-white">
@@ -75,4 +78,3 @@
     </div>
   </div>
 </div>
-
