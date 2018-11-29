@@ -17,7 +17,7 @@
         <td><%= attendee.event.title %></td>
         <td><%= attendee.user.name %></td>
         <td><%= attendee.guests_count %></td>
-        <% if current_user.admin? || current_user?(user) %>
+        <% if current_user.admin? %>
           <td><%= link_to 'Delete', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end%>
       </tr>

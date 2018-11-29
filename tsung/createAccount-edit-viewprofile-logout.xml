@@ -52,7 +52,7 @@
         <!-- Edit account -->
 
         <request subst="true">
-          <http url="/users/whereyouwannabe%%_counter%%/edit" method="GET" version="1.1" />
+          <http url="/users/%%_counter%%/edit" method="GET" version="1.1" />
         </request>
 
         <request subst="true">
@@ -70,7 +70,7 @@
         <!-- Log in with new email -->
 
         <request subst="true">
-          <http url="/login" method="POST" version="1.1" contents="session[email]=whereyouwannabe%%_counter%%@gmail.com&amp;
+          <http url="/login" method="POST" version="1.1" contents="[email]=whereyouwannabe%%_counter%%@gmail.com&amp;
           session[password]=foobar&amp;commit=Log in" content_type="application/x-www-form-urlencoded" />
         </request>
         
