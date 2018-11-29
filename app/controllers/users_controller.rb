@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @hostedFutureEvents = Event.where("date > ? AND user_id = ?", DateTime.now, @user.id)
-    @eventAttending = Event.joins(:attendees).where("date > ? AND attendees.user_id = ?", DateTime.now, @user.id)
+    @hostedFutureEvents = Event.where("date > ? AND user_id = ?", DateTime.now, @user.id).paginate(page: params[:page],per_page:2)
+    @eventAttending = Event.joins(:attendees).where("date > ? AND attendees.user_id = ?", DateTime.now, @user.id).paginate(page: params[:page],per_page:2)
   end
 
   # GET /users/new
