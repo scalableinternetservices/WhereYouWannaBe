@@ -32,16 +32,42 @@
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
       
-      <request subst="true">
-        <http url="/login" method="POST" version="1.1" contents="session[email]=example@railstutorial.org&amp;session[password]=foobar&amp;commit=Login" content_type="application/x-www-form-urlencoded" />
+      <setdynvars sourcetype="random_number" start="1" end="10000">
+        <var name="num"/>
+      </setdynvars>
+      
+      <setdynvars sourcetype="random_number" start="1" end="99">
+        <var name="userrand"/>
+      </setdynvars>
+      
+     <request subst="true">
+       <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
+        <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
+         session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
       </request>
       
-      <request subst="true">
-        <http url="/events/new" method="GET" version="1.1" />
+      <request>
+        <dyn_variable name="locationid" re="Location: .*/locations/([0-9]+)"></dyn_variable>
+        <http url="/locations" method="POST" version="1.1" contents="location[name]=UCSB%%_num%%&amp;location[city]=Santa Barbara&amp;location[capacity]=
+        100&amp;location[email]=ucsb%%_num%%@test.com&amp;location[phone]=1234567890&amp;commit=Create Location"
+          content_type="application/x-www-form-urlencoded" />
+      </request>
+      
+      <request>
+        <dyn_variable name="tagid" re="Location: .*/tags/([0-9]+)"></dyn_variable>
+        <http url="/tags" method="POST" version="1.1" contents="tag[name]=Fun Event%%_num%%&amp;tag[description]=This is a fun event&amp;
+        commit=Create Tag" content_type="application/x-www-form-urlencoded" />
+      </request>
+      
+      <request>
+        <http url="/events" method="POST" version="1.1" contents="event[name]=Goblet of Fire%%_num%%&amp;event[tag_id]=%%_tagid%%&amp;event[location_id]
+        =%%_locationid%%&amp;event[price]=20&amp;event[date(1i)]=2019&amp;event[date(2i)]=1&amp;event[date(3i)]=9&amp;event[date(4i)]=05&amp;
+        event[date(5i)]=09&amp;event[user_id]=%%_userid%%&amp;commit=Create Event"
+          content_type="application/x-www-form-urlencoded" />
       </request>
   
       <request subst="true">
-         <http url="/logout" method="POST" version="1.1" contents="_method=delete" content_type="application/x-www-form-urlencoded"/>
+        <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
       </request>
         
     </session>
