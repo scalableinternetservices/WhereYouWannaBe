@@ -57,23 +57,25 @@
 </div>
 <div id="commentsContainer" class=" col-md-6 offset-md-3">
   <% @comments.each do |comment| %>
-    <div class="card commentContainer" data-comment-id ="<%=comment.id%>">
-      <div class="card-header">
-        <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 50, width: 50, class:'rounded-circle'),
-                    root_path, id: "logo" %>
-        <% if current_user.id == comment.user_id %>
-          <button type="button" class="close closeBtn" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        <% end %>
-        <span> <%= comment.user_id %> </span>
-      </div>
-      <div class="card-body">
-        <p class="card-text"><%= comment.message %></p>
-        <p class="font-weight-light"><%= comment.date %></p>
+    <% cache(comment) do %>
+      <div class="card commentContainer" data-comment-id ="<%=comment.id%>">
+        <div class="card-header">
+          <%= link_to image_tag("brick.jpg", alt: "WYWB logo", height: 50, width: 50, class:'rounded-circle'),
+                      root_path, id: "logo" %>
+          <% if current_user.id == comment.user_id %>
+            <button type="button" class="close closeBtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <% end %>
+          <span> <%= comment.user_id %> </span>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= comment.message %></p>
+          <p class="font-weight-light"><%= comment.date %></p>
 
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 
