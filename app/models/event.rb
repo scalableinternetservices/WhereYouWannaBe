@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  belongs_to :user,touch: true
   belongs_to :location
   has_many :attendees, dependent: :destroy
   belongs_to :tag
