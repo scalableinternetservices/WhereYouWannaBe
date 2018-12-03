@@ -18,5 +18,8 @@ module WhereYouWannaBe
     # the framework and any gems in your application.
     # Include the authenticity token in remote forms.
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    config.action_controller.perform_caching = true
+    config.cache_store = :memory_store, { size: 4.megabytes }
   end
 end
