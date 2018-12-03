@@ -1,18 +1,23 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update,:destroy, :index,:show,:new]
+
 
   # GET /events
   # GET /events.json
   def index
+    @exclude_events = Attendee.select('event_id').where("user_id = ?",current_user.id)
     if(params.has_key?(:tag_id))
-      @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ?", DateTime.now, params[:tag_id])
+      @events = Event.includes(:location)
+                     .includes(:tag).where("date > ? AND tag_id = ? AND events.id NOT IN (?)", DateTime.now, params[:tag_id], @exclude_events)
+                     .paginate(page: params[:page],per_page:10)
+      # @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ? AND events.id NOT IN (?)", DateTime.now, params[:tag_id],@exclude_events)
       # .paginate(page: params[:page],per_page:10)
     elsif(params.has_key?(:location_id))
-      @events = Event.joins(:location).joins(:tag).where("date > ? AND location_id = ?", DateTime.now, params[:location_id])
-      # .paginate(page: params[:page],per_page:10)
+      @events = Event.includes(:location).includes(:tag).where("date > ? AND location_id = ? AND events.id NOT IN (?)", DateTime.now,
+      params[:location_id],@exclude_events).paginate(page: params[:page],per_page:10)
     else
-      @events = Event.joins(:location).joins(:tag).where("date > ?", DateTime.now)
-      # .paginate(page: params[:page],per_page:10)
+      @events = Event.includes(:location).includes(:tag).where("date > ? AND events.id NOT IN (?)", DateTime.now, @exclude_events).paginate(page: params[:page],per_page:10)
     end
     @tags = Tag.all
     @locations = Location.all

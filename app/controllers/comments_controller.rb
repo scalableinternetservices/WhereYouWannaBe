@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update,:destroy, :index,:show,:new]
 
   # GET /comments
   # GET /comments.json
@@ -33,7 +34,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         # format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: status }
+        format.json { render json: @comment, status: 200 }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
