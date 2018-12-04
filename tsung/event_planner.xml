@@ -35,15 +35,6 @@
      <arrivalphase phase="7" duration="30" unit="second">
       <users arrivalrate="26" unit="second"></users>
     </arrivalphase>
-     <arrivalphase phase="8" duration="30" unit="second">
-      <users arrivalrate="30" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="9" duration="30" unit="second">
-      <users arrivalrate="34" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="10" duration="30" unit="second">
-      <users arrivalrate="38" unit="second"></users>
-    </arrivalphase>
   </load>
 
   <options>
