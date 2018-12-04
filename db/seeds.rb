@@ -16,7 +16,7 @@ User.create!(name:  "Admin User",
              admin: true)
 
 ## Creating Normal User
-99.times do |n|
+999.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   city = Faker::Address.city
@@ -30,7 +30,7 @@ User.create!(name:  "Admin User",
 end
 
 ## Creating Tags
-35.times do |n|
+50.times do |n|
   name  = Faker::GameOfThrones.house #=> "Stark"
   description = Faker::GameOfThrones.dragon #=> "Drogon"
   Tag.create!(name:  name,
@@ -38,7 +38,7 @@ end
 end
 
 ## Creating Locations
-35.times do |n|
+50.times do |n|
   name = Faker::GameOfThrones.city ## using name of the city for the name of address
   address = Faker::Address.street_address
   city = Faker::Address.city
@@ -50,10 +50,10 @@ end
 end
 
 ## Creating events
-50.times do |n|
-  tag_id = Faker::Number.between(1,34)
-  location_id= Faker::Number.between(1,34)
-  user_id = Faker::Number.between(1,99)
+250.times do |n|
+  tag_id = Faker::Number.between(1,49)
+  location_id= Faker::Number.between(1,49)
+  user_id = Faker::Number.between(1,999)
   title= Faker::GameOfThrones.character
   description = Faker::GameOfThrones.quote
   price= Faker::Number.between(10,100)
@@ -70,7 +70,7 @@ end
 # Following relationships
 users = User.all
 user  = users.first
-following = users[2..50]
-followers = users[3..40]
+following = users[2..500]
+followers = users[3..400]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
