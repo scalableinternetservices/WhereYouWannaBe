@@ -96,9 +96,7 @@
           commit=Create Tag" content_type="application/x-www-form-urlencoded" />
         </request>
       </transaction>
-      
-      <thinktime value="%%_userdelay%%" random="false"/>
-      
+           
       <transaction name="CREATE_EVENT">
         <request subst="true">
           <http url="/events" method="POST" version="1.1" contents="event[title]=Goblet of Fire%%_num%%&amp;event[tag_id]=%%_tagid%%&amp;
