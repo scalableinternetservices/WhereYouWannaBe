@@ -35,60 +35,62 @@
         <var name="num"/>
       </setdynvars>
 
-      <setdynvars sourcetype="random_number" start="1" end="99">
+      <setdynvars sourcetype="random_number" start="1" end="499">
         <var name="userrand"/>
       </setdynvars>
 
+      <setdynvars sourcetype="random_number" start="15" end="40">
+        <var name="thinktimerand"/>
+      </setdynvars>
+
         <!-- Log in with new email -->
+        <transaction name="user_login">
+          <request subst="true">
+            <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
+            <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
+             session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
+          </request>
+        </transaction>
 
-      <request subst="true">
-        <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
-        <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
-         session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
-      </request>
+      <!-- Check the users he is following -->
+      <transaction name="user_following">
+        <request subst="true">
+          <http url="/users/%%_userid/following/" method="GET" version="1.1" />
+        </request>
+      </transaction>
 
+      <!-- Go to the users page -->
+      <transaction name="users_page">
+        <request subst="true">
+          <http url="/users" method="GET" version="1.1" />
+        </request>
+      </transaction>
+
+
+      <!-- Go the the user he wants to follow -->
+      <transaction name="Random_user_follow">
         <request subst="true">
           <http url="/users/%%_userrand%%" method="GET" version="1.1" />
         </request>
-
-        <!-- Check event page, follow 2 Users, refresh events page -->
+      <!-- Follow the user -->
+        <request subst="true">
+          <http url="/relationships" method="POST" version="1.1" contents="followed_id=%%_userrand%%&amp;commit=Follow"/>
+        </request>
+      </transaction>
+      <!-- Go to his following page again -->
+      <transaction name="user_following">
         <request>
-          <http url='/events' version='1.1' method='GET'></http>
+          <http url='/users/%%_userid/following/' version='1.1' method='GET'></http>
         </request>
+      </transaction>
 
-        <request subst="true">
-          <http url="/users" method="GET" version="1.1" />
-        </request>
-
-        <request subst="true">
-          <http url="/users/60" method="GET" version="1.1" />
-        </request>
-
-        <request subst="true">
-          <http url="/relationships" method="POST" version="1.1" contents="followed_id=81&amp;commit=Follow"/>
-        </request>
-
-        <request subst="true">
-          <http url="/users" method="GET" version="1.1" />
-        </request>
-
-        <request subst="true">
-          <http url="/users/70" method="GET" version="1.1" />
-        </request>
-
-        <request subst="true">
-          <http url="/relationships" method="POST" version="1.1" contents="followed_id=91&amp;commit=Follow"/>
-        </request>
-
-        <request>
-          <http url='/events' version='1.1' method='GET'></http>
-        </request>
-
+      <thinktime value="%%_thinktimerand%%" random="false"/>
         <!-- Log out -->
-
-      <request subst="true">
-        <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
-      </request>
+      <transaction name="log_out">
+        <request subst="true">
+          <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
 
     </session>
   </sessions>

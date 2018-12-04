@@ -70,6 +70,10 @@
           <var name="userrand"/>
         </setdynvars>
 
+        <setdynvars sourcetype="random_number" start="15" end="40">
+          <var name="thinktimerand"/>
+        </setdynvars>
+
         <!-- Sign up -->
 
 	<transaction name="SIGN_UP">
@@ -104,6 +108,7 @@
 
 	</transaction>
         <!-- Log out -->
+    <thinktime value="%%_thinktimerand%%" random="false"/>
 
 	<transaction name="LOG_OUT">
         <request subst="true">
