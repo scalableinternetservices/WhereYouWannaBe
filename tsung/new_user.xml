@@ -30,6 +30,9 @@
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
 
+        <setdynvars sourcetype="random_number" start="1" end="10000000">
+          <var name="userrand"/>
+        </setdynvars>
 
         <!-- Sign up -->
 
@@ -44,7 +47,7 @@
         <request subst="true">
           <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
           <http url="/users" method="POST" version="1.1" contents="user[name]=Aprilcomesshewill&amp;user[age]=20&amp;user[city]=Santa Barbara&amp;
-          user[email]=outoftune@gmail.com&amp;user[password]=foobar&amp;user[password_confirmation]=foobar&amp;user[home_address]=foobar&amp;commit=Create User"
+          user[email]=testuser_%%_userrand%%@test.com&amp;user[password]=foobar&amp;user[password_confirmation]=foobar&amp;user[home_address]=foobar&amp;commit=Create User"
           content_type="application/x-www-form-urlencoded" />
         </request>
 

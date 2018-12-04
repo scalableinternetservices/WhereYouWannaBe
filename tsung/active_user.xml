@@ -15,7 +15,7 @@
     </servers>
 
     <load>
-        <arrivalphase phase="1" duration="1" unit="minute">
+        <arrivalphase phase="1" duration="1" unit="second">
             <users arrivalrate="1" unit="second"></users>
         </arrivalphase>
 
@@ -54,23 +54,23 @@
             </request>
 
             <!--use the tag filter-->
-            <request>
+            <request subst="true">
                 <http url='/events?tag_id=%%_filterid%%' version='1.1' method='GET'></http>
             </request>
 
             <!--use the location filter-->
-            <request>
+            <request subst="true">
                 <http url='/events?location_id=%%_filterid%%' version='1.1' method='GET'></http>
             </request>
 
             <!--create comment-->
-            <request>
+            <request subst="true">
                 <http url="/comments" method="POST" version="1.1" contents="comment[event_id]=%%_filterid%%&amp;comment[message]=tsung generated comment&amp;
                 comment[user_id]=%%_userid%%&amp;comment[date]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
             </request>
 
             <!--rsvp to event-->
-            <request>
+            <request subst="true">
                 <http url="/attendees" method="POST" version="1.1" contents="attendee[event_id]=%%_filterid%%&amp;attendee[guests_count]=%%_filterid%%&amp;
                 attendee[user_id]=%%_userid%%&amp;attendee[updated_at]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
             </request>
