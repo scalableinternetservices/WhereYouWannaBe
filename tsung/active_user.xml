@@ -42,48 +42,59 @@
             </setdynvars>
 
             <!--random user login-->
-            <request subst="true">
-                <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
-                <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
-         session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
-            </request>
+            <transaction name="user_login">
+                <request subst="true">
+                    <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
+                    <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
+             session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
 
             <!--access the events page-->
-            <request>
-                <http url='/events' version='1.1' method='GET'></http>
-            </request>
+            <transaction name="access_events">
+                <request>
+                    <http url='/events' version='1.1' method='GET'></http>
+                </request>
 
-            <!--use the tag filter-->
-            <request subst="true">
-                <http url='/events?tag_id=%%_filterid%%' version='1.1' method='GET'></http>
-            </request>
+                <!--use the tag filter-->
+                <request subst="true">
+                    <http url='/events?tag_id=%%_filterid%%' version='1.1' method='GET'></http>
+                </request>
 
-            <!--use the location filter-->
-            <request subst="true">
-                <http url='/events?location_id=%%_filterid%%' version='1.1' method='GET'></http>
-            </request>
+                <!--use the location filter-->
+                <request subst="true">
+                    <http url='/events?location_id=%%_filterid%%' version='1.1' method='GET'></http>
+                </request>
+            </transaction>
 
             <!--create comment-->
-            <request subst="true">
-                <http url="/comments" method="POST" version="1.1" contents="comment[event_id]=%%_filterid%%&amp;comment[message]=tsung generated comment&amp;
-                comment[user_id]=%%_userid%%&amp;comment[date]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
-            </request>
+            <transaction name="add_comment">
+                <request subst="true">
+                    <http url="/comments" method="POST" version="1.1" contents="comment[event_id]=%%_filterid%%&amp;comment[message]=tsung generated comment&amp;
+                    comment[user_id]=%%_userid%%&amp;comment[date]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
 
             <!--rsvp to event-->
-            <request subst="true">
-                <http url="/attendees" method="POST" version="1.1" contents="attendee[event_id]=%%_filterid%%&amp;attendee[guests_count]=%%_filterid%%&amp;
-                attendee[user_id]=%%_userid%%&amp;attendee[updated_at]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
-            </request>
+            <transaction name="rsvp_event">
+                <request subst="true">
+                    <http url="/attendees" method="POST" version="1.1" contents="attendee[event_id]=%%_filterid%%&amp;attendee[guests_count]=%%_filterid%%&amp;
+                    attendee[user_id]=%%_userid%%&amp;attendee[updated_at]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
 
             <!--access the second page of events-->
-            <request>
-                <http url='events?page=2' version='1.1' method='GET'></http>
-            </request>
+            <transaction name="access_events_page">
+                <request>
+                    <http url='/events?page=2' version='1.1' method='GET'></http>
+                </request>
+            </transaction>
 
-
-            <request subst="true">
-                <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
-            </request>
+            <transaction name="user_logout">
+                <request subst="true">
+                    <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
 
         </session>
     </sessions>
