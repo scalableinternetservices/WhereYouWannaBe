@@ -15,37 +15,25 @@
 
   <load>
     <arrivalphase phase="1" duration="30" unit="second">
-      <users arrivalrate="2" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="2" duration="30" unit="second">
-      <users arrivalrate="4" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="6" unit="second"></users>
     </arrivalphase>
-     <arrivalphase phase="4" duration="30" unit="second">
-      <users arrivalrate="8" unit="second"></users>
-    </arrivalphase
-     <arrivalphase phase="5" duration="30" unit="second">
+     <arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="10" unit="second"></users>
     </arrivalphase>
-     <arrivalphase phase="6" duration="30" unit="second">
-      <users arrivalrate="12" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="7" duration="30" unit="second">
+     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="14" unit="second"></users>
     </arrivalphase>
-     <arrivalphase phase="8" duration="30" unit="second">
-      <users arrivalrate="16" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="9" duration="30" unit="second">
+     <arrivalphase phase="4" duration="30" unit="second">
       <users arrivalrate="18" unit="second"></users>
     </arrivalphase>
-     <arrivalphase phase="10" duration="30" unit="second">
-      <users arrivalrate="20" unit="second"></users>
-    </arrivalphase>
-     <arrivalphase phase="11" duration="30" unit="second">
+     <arrivalphase phase="5" duration="30" unit="second">
       <users arrivalrate="22" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="6" duration="30" unit="second">
+      <users arrivalrate="26" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="7" duration="30" unit="second">
+      <users arrivalrate="30" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -65,6 +53,10 @@
         <var name="num"/>
       </setdynvars>
       
+      <setdynvars sourcetype="random_number" start="20" end="50">
+        <var name="userdelay"/>
+      </setdynvars>
+      
       <setdynvars sourcetype="random_number" start="1" end="99">
         <var name="userrand"/>
       </setdynvars>
@@ -76,6 +68,8 @@
            session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
         </request>
       </transaction>
+      
+      <thinktime value="%%_userdelay%%" random="false"/>
       
       <transaction name="CREATE_LOCATION">
         <request subst="true">
