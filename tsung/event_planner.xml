@@ -62,6 +62,10 @@
         <var name="num"/>
       </setdynvars>
       
+      <setdynvars sourcetype="random_number" start="20" end="50">
+        <var name="userdelay"/>
+      </setdynvars>
+      
       <setdynvars sourcetype="random_number" start="1" end="99">
         <var name="userrand"/>
       </setdynvars>
@@ -82,6 +86,8 @@
             content_type="application/x-www-form-urlencoded" />
         </request>
       </transaction>
+      
+      <thinktime value="%%_userdelay%%" random="false"/>
 
       <transaction name="CREATE_TAG">
         <request subst="true">
@@ -90,6 +96,8 @@
           commit=Create Tag" content_type="application/x-www-form-urlencoded" />
         </request>
       </transaction>
+      
+      <thinktime value="%%_userdelay%%" random="false"/>
       
       <transaction name="CREATE_EVENT">
         <request subst="true">
