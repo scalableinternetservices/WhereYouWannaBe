@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [] >
+<tsung loglevel="notice">
+
+    <!-- login - events - filter - comment - rsvp - page-->
+
+    <!-- Client side setup -->
+    <clients>
+        <client host="localhost" use_controller_vm="true" maxusers='30000'/>
+    </clients>
+
+    <!-- Server side setup -->
+    <servers>
+        <server host="caching.mui3yzewey.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    </servers>
+
+    <load>
+        <arrivalphase phase="1" duration="30" unit="second">
+            <users arrivalrate="4" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="2" duration="30" unit="second">
+            <users arrivalrate="8" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="3" duration="30" unit="second">
+            <users arrivalrate="12" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="4" duration="30" unit="second">
+            <users arrivalrate="16" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="5" duration="30" unit="second">
+            <users arrivalrate="20" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="6" duration="30" unit="second">
+            <users arrivalrate="24" unit="second"></users>
+        </arrivalphase>
+    </load>
+
+    <options>
+        <!-- Set connection timeout to 2 seconds -->
+        <option name="global_ack_timeout" value="2000"></option>
+
+        <option type="ts_http" name="user_agent">
+            <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+        </option>
+    </options>
+
+    <sessions>
+        <session name="http-example" probability="100" type="ts_http">
+
+            <setdynvars sourcetype="random_number" start="1" end="35">
+                <var name="filterid"/>
+            </setdynvars>
+
+            <setdynvars sourcetype="random_number" start="1" end="99">
+                <var name="userrand"/>
+            </setdynvars>
+
+            <setdynvars sourcetype="random_number" start="20" end="50">
+                <var name="userdelay"/>
+            </setdynvars>
+
+            <!--random user login-->
+            <transaction name="user_login">
+                <request subst="true">
+                    <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
+                    <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
+             session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
+
+            <!--access the events page-->
+            <transaction name="access_events">
+                <request>
+                    <http url='/events' version='1.1' method='GET'></http>
+                </request>
+
+                <!--use the tag filter-->
+                <request subst="true">
+                    <http url='/events?tag_id=%%_filterid%%' version='1.1' method='GET'></http>
+                </request>
+
+                <!--use the location filter-->
+                <request subst="true">
+                    <http url='/events?location_id=%%_filterid%%' version='1.1' method='GET'></http>
+                </request>
+            </transaction>
+
+            <thinktime value="%%_userdelay%%" random="false"/>
+
+            <!--create comment-->
+            <transaction name="add_comment">
+                <request subst="true">
+                    <http url="/comments" method="POST" version="1.1" contents="comment[event_id]=%%_filterid%%&amp;comment[message]=tsung generated comment&amp;
+                    comment[user_id]=%%_userid%%&amp;comment[date]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
+
+            <!--rsvp to event-->
+            <transaction name="rsvp_event">
+                <request subst="true">
+                    <http url="/attendees" method="POST" version="1.1" contents="attendee[event_id]=%%_filterid%%&amp;attendee[guests_count]=%%_filterid%%&amp;
+                    attendee[user_id]=%%_userid%%&amp;attendee[updated_at]=Fri Nov 30 2018 22:11:32 GMT-0800 (Pacific Standard Time)" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
+
+            <!--access the second page of events-->
+            <transaction name="access_events_page">
+                <request>
+                    <http url='/events?page=2' version='1.1' method='GET'></http>
+                </request>
+            </transaction>
+
+            <transaction name="user_logout">
+                <request subst="true">
+                    <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
+                </request>
+            </transaction>
+
+        </session>
+    </sessions>
+</tsung>
