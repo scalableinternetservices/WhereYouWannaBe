@@ -9,13 +9,31 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="withpagination.mui3yzewey.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host=" wywb-wopagination.mui3yzewey.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
-    <arrivalphase phase="1" duration="1" unit="second">
-      <users arrivalrate="1" unit="second"></users>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="6" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="10" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="14" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="4" duration="30" unit="second">
+      <users arrivalrate="18" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="5" duration="30" unit="second">
+      <users arrivalrate="22" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="6" duration="30" unit="second">
+      <users arrivalrate="26" unit="second"></users>
+    </arrivalphase>
+     <arrivalphase phase="7" duration="30" unit="second">
+      <users arrivalrate="30" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -35,40 +53,56 @@
         <var name="num"/>
       </setdynvars>
       
+      <setdynvars sourcetype="random_number" start="20" end="50">
+        <var name="userdelay"/>
+      </setdynvars>
+      
       <setdynvars sourcetype="random_number" start="1" end="99">
         <var name="userrand"/>
       </setdynvars>
       
-     <request subst="true">
-       <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
-        <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
-         session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
-      </request>
+     <transaction name="LOGIN">
+       <request subst="true">
+         <dyn_variable name="userid" re="Location: .*/users/([0-9]+)"></dyn_variable>
+          <http url="/login" method="POST" version="1.1" contents="session[email]=example-%%_userrand%%@railstutorial.org&amp;
+           session[password]=password&amp;" content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
       
-      <request subst="true">
-        <dyn_variable name="locationid" re="Location: .*/locations/([0-9]+)"></dyn_variable>
-        <http url="/locations" method="POST" version="1.1" contents="location[name]=UCSB%%_num%%&amp;location[city]=Santa Barbara&amp;location[capacity]=
-        100&amp;location[email]=ucsb%%_num%%@test.com&amp;location[phone]=1234567890&amp;commit=Create Location"
-          content_type="application/x-www-form-urlencoded" />
-      </request>
+      <thinktime value="%%_userdelay%%" random="false"/>
+      
+      <transaction name="CREATE_LOCATION">
+        <request subst="true">
+          <dyn_variable name="locationid" re="Location: .*/locations/([0-9]+)"></dyn_variable>
+          <http url="/locations" method="POST" version="1.1" contents="location[name]=UCSB%%_num%%&amp;location[city]=Santa Barbara&amp;location[capacity]=
+          100&amp;location[email]=ucsb%%_num%%@test.com&amp;location[phone]=1234567890&amp;commit=Create Location"
+            content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
 
-      <request subst="true">
-        <dyn_variable name="tagid" re="Location: .*/tags/([0-9]+)"></dyn_variable>
-        <http url="/tags" method="POST" version="1.1" contents="tag[name]=fun-event%%_num%%&amp;tag[description]=This is a fun event&amp;
-        commit=Create Tag" content_type="application/x-www-form-urlencoded" />
-      </request>
+      <transaction name="CREATE_TAG">
+        <request subst="true">
+          <dyn_variable name="tagid" re="Location: .*/tags/([0-9]+)"></dyn_variable>
+          <http url="/tags" method="POST" version="1.1" contents="tag[name]=fun-event%%_num%%&amp;tag[description]=This is a fun event&amp;
+          commit=Create Tag" content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
       
-      <request subst="true">
-        <http url="/events" method="POST" version="1.1" contents="event[title]=Goblet of Fire%%_num%%&amp;event[tag_id]=%%_tagid%%&amp;
-        event[location_id]=%%_locationid%%&amp;event[price]=20&amp;event[date(1i)]=2019&amp;event[date(2i)]=1&amp;event[date(3i)]=9&amp;event[date(4i)]=05&amp;
-        event[date(5i)]=09&amp;event[user_id]=%%_userid%%&amp;commit=Create Event"
-          content_type="application/x-www-form-urlencoded" />
-      </request>
+      <transaction name="CREATE_EVENT">
+        <request subst="true">
+          <http url="/events" method="POST" version="1.1" contents="event[title]=Goblet of Fire%%_num%%&amp;event[tag_id]=%%_tagid%%&amp;
+          event[location_id]=%%_locationid%%&amp;event[price]=20&amp;event[date(1i)]=2019&amp;event[date(2i)]=1&amp;event[date(3i)]=9&amp;event[date(4i)]=05&amp;
+          event[date(5i)]=09&amp;event[user_id]=%%_userid%%&amp;commit=Create Event"
+            content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
   
-      <request subst="true">
-        <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
-      </request>
-        
+      <transaction name="LOGOUT">
+        <request subst="true">
+          <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
+        </request>
+      </transaction>
+      
     </session>
   </sessions>
 </tsung>

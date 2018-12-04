@@ -16,28 +16,31 @@
 
   <load>
     <arrivalphase phase="1" duration="1" unit="minute">
-      <users arrivalrate="10" unit="second"></users>
+      <users arrivalrate="100" unit="second"></users>
     </arrivalphase>
    <arrivalphase phase="2" duration="1" unit="minute">
-      <users arrivalrate="20" unit="second"></users>
+      <users arrivalrate="200" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="3" duration="1" unit="minute">
-      <users arrivalrate="30" unit="second"></users>
+      <users arrivalrate="210" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="4" duration="1" unit="minute">
-      <users arrivalrate="40" unit="second"></users>
+      <users arrivalrate="230" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="5" duration="1" unit="minute">
-      <users arrivalrate="50" unit="second"></users>
+      <users arrivalrate="250" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="6" duration="1" unit="minute">
-      <users arrivalrate="60" unit="second"></users>
+      <users arrivalrate="260" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="7" duration="1" unit="minute">
-      <users arrivalrate="70" unit="second"></users>
+      <users arrivalrate="270" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="8" duration="1" unit="minute">
-      <users arrivalrate="80" unit="second"></users>
+      <users arrivalrate="280" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="9" duration="1" unit="minute">
+      <users arrivalrate="300" unit="second"></users>
     </arrivalphase>
   </load>
 

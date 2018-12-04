@@ -9,12 +9,48 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="wbwy-testanother.mui3yzewey.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="master.mui3yzewey.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="1" unit="minute">
-      <users arrivalrate="1" unit="second"></users>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="6" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="4" duration="30" unit="second">
+      <users arrivalrate="8" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="5" duration="30" unit="second">
+      <users arrivalrate="10" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="6" duration="30" unit="second">
+      <users arrivalrate="12" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="7" duration="30" unit="second">
+      <users arrivalrate="14" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="8" duration="30" unit="second">
+      <users arrivalrate="16" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="9" duration="30" unit="second">
+      <users arrivalrate="18" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="10" duration="30" unit="second">
+      <users arrivalrate="20" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="11" duration="30" unit="second">
+      <users arrivalrate="22" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="12" duration="30" unit="second">
+      <users arrivalrate="24" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="13" duration="30" unit="second">
+      <users arrivalrate="26" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -36,6 +72,7 @@
 
         <!-- Sign up -->
 
+	<transaction name="SIGN_UP">
         <request subst="true">
           <http url="/" method="GET" version="1.1" />
         </request>
@@ -51,8 +88,10 @@
           content_type="application/x-www-form-urlencoded" />
         </request>
 
+	</transaction>
         <!-- Edit account -->
 
+	<transaction name="EDIT">
         <request subst="true">
           <http url="/users/%%_userid%%/edit" method="GET" version="1.1" />
         </request>
@@ -63,12 +102,15 @@
           content_type="application/x-www-form-urlencoded" />
         </request>
 
+	</transaction>
         <!-- Log out -->
 
+	<transaction name="LOG_OUT">
         <request subst="true">
           <http url="/logout" method="DELETE" version="1.1" content_type="application/x-www-form-urlencoded" />
         </request>
 
+	</transaction>
 
     </session>
   </sessions>
