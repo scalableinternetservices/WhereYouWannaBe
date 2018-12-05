@@ -19,8 +19,8 @@ class EventsController < ApplicationController
     else
       @events = Event.includes(:location).includes(:tag).where("date > ? AND events.id NOT IN (?)", DateTime.now, @exclude_events).paginate(page: params[:page],per_page:10)
     end
-    @tags = Tag.all
-    @locations = Location.all
+    @tags = Tag.all_tags
+    @locations = Location.all_locations
   end
 
   # GET /events/1

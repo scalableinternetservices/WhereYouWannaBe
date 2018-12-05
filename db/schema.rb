@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_053323) do
     t.index ["date"], name: "index_events_on_date"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["tag_id"], name: "index_events_on_tag_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
