@@ -44,5 +44,18 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
-  end
+	end
+
+	def self.getUser(user_id)
+		# puts 'getting from cache' << "/user/#{user_id}"
+		Rails.cache.fetch("/user/#{user_id}", expires_in: 20.minutes) do
+			# puts'I think Im working'
+			u = User.find_by(id: user_id)
+			u
+		end
+	end
+
+	def self.deleteCurrUserCache(user_id)
+		Rails.cache.delete "/user/#{user_id}"
+	end
 end

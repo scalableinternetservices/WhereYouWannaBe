@@ -10,14 +10,15 @@ class EventsController < ApplicationController
     if(params.has_key?(:tag_id))
       @events = Event.includes(:location)
                      .includes(:tag).where("date > ? AND tag_id = ? AND events.id NOT IN (?)", DateTime.now, params[:tag_id], @exclude_events)
-                     .paginate(page: params[:page],per_page:10)
+                     .paginate(page: params[:page],per_page:10, total_entries: 400)
       # @events = Event.joins(:location).joins(:tag).where("date > ? AND tag_id = ? AND events.id NOT IN (?)", DateTime.now, params[:tag_id],@exclude_events)
       # .paginate(page: params[:page],per_page:10)
     elsif(params.has_key?(:location_id))
       @events = Event.includes(:location).includes(:tag).where("date > ? AND location_id = ? AND events.id NOT IN (?)", DateTime.now,
-      params[:location_id],@exclude_events).paginate(page: params[:page],per_page:10)
+      params[:location_id],@exclude_events).paginate(page: params[:page],per_page:10, total_entries: 400)
     else
-      @events = Event.includes(:location).includes(:tag).where("date > ? AND events.id NOT IN (?)", DateTime.now, @exclude_events).paginate(page: params[:page],per_page:10)
+      @events = Event.includes(:location).includes(:tag).where("date > ? AND events.id NOT IN (?)", DateTime.now, @exclude_events)
+                    .paginate(page: params[:page],per_page:10, total_entries: 400)
     end
     @tags = Tag.all_tags
     @locations = Location.all_locations

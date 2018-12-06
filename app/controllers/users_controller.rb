@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     # @users = User.all
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], total_entries: 1000)
   end
 
   # GET /users/1
@@ -51,6 +51,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         flash[:success] = "User was successfully updated!"
+        if current_user?(@user)
+            User.deleteCurrUserCache(@user.id)
+        end
         format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
