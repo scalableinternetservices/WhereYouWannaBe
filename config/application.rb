@@ -20,6 +20,6 @@ module WhereYouWannaBe
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
     config.action_controller.perform_caching = true
-    config.cache_store = :memory_store, { size: 4.megabytes }
+    config.cache_store = :memory_store, { size: 64.megabytes }
   end
 end
